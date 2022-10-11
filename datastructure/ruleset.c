@@ -19,7 +19,7 @@
 #include <math.h>
 #include <stdio.h>
 
-typedef unsigned int RuleId;
+#include "rules.h"
 
 /* Compexité en mémoire en O(1)
  * Stocke juste un entier */

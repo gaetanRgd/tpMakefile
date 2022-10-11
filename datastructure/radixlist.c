@@ -56,7 +56,6 @@ Radix radixget(Radix* radix, unsigned char* key) {
         if (strcomp(list -> tree -> endkey, key)) {
             radix = list -> tree;
             list = radix -> list;
-            
         }
     }
 }

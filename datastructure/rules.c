@@ -18,9 +18,9 @@
 
 #include <stdlib.h>
 
-typedef unsigned int RuleId;
+#include "infiniteruleset.h"
 
-typedef unsigned long long RuleSet;
+typedef unsigned int RuleId;
  
 typedef struct {
     int id;

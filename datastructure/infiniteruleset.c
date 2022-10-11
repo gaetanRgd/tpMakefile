@@ -46,8 +46,8 @@ InfiniteRuleSet infinitesetadd(InfiniteRuleSet set, RuleId id) {
 
 /* Suppression d'un entier 
  * Complexité en O(1) */
-InfiniteRuleSet infinitesetsup(InfiniteRuleSet set, RuleId id) {
-    set[id / 64] = setsup(set[id / 64], id % 64);
+InfiniteRuleSet infinitesetdel(InfiniteRuleSet set, RuleId id) {
+    set[id / 64] = setdel(set[id / 64], id % 64);
 }
 
 /* Test d'appartenance à l'ensemble 
