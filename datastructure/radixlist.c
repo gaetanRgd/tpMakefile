@@ -32,7 +32,6 @@ typedef struct {
  * Car maximum 255 éléments dans la liste, un par caractères */
 typedef struct {
     RadixChainedList* next;
-    char c;
     Radix* tree;
 } RadixChainedList;
 
@@ -52,8 +51,13 @@ Radix radixadd(Radix radix, unsigned char* key, unsigned int value) {
 
 
 Radix radixget(Radix* radix, unsigned char* key) {
-    while (radix->list) {
-
+    RadixChainedList* list = radix->list;
+    while ((list != NULL)) {
+        if (strcomp(list -> tree -> endkey, key)) {
+            radix = list -> tree;
+            list = radix -> list;
+            
+        }
     }
 }
 
