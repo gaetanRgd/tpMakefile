@@ -18,20 +18,14 @@
 
 #include <stdlib.h>
 
-#include "infiniteruleset.h"
+#include "rules.h"
 
-typedef unsigned int RuleId;
- 
-typedef struct {
-    RuleId id;
-    char* name;
-    char** dependencies;
-    char** commands;
-} Rule;
+#include "infiniteruleset.h"
+#include "ruletab.h"
 
 /* STR to ID == Arbre Radix*/
 RuleId str_to_id(char* str) {
-    return (RuleId) 0;
+    return 0;
 }
 
 Rule str_to_Rule(RuleTab ruletab, char* str) {
@@ -39,9 +33,9 @@ Rule str_to_Rule(RuleTab ruletab, char* str) {
 }
 
 /* Créer une rêgle */
-Rule create_rule(RuleTab ruletab, char* name, int n_commands, int n_dependencies) {
-    ruletab.tab[ruletab.n] = &((Rule) {ruletab.n, name, malloc(n_commands * sizeof(Rule *)), malloc(n_dependencies * sizeof(Rule *))});
-    ruletab.n ++;
+Rule create_rule(RuleTab* ruletab, char* name) {
+    return ruletabadd(ruletab)
+
 }
 
 /* y Ajouter des dépendances */
@@ -56,10 +50,3 @@ void add_dependencie(RuleTab ruletab, RuleId id, char* dependencie) {
 /* Algotithme de Parsing :
  * - Première étape pour attribuer les rêgles, leurs commandes et le nombre de dépendances
  * - Seconde étape pour y ajouter les ids des dépendances */
-
-
-
-
-
-
-

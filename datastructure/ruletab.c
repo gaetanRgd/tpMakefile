@@ -38,18 +38,20 @@ void ruletabfree(RuleTab* ruletab) {
 /* Ajouter un élément au tableau
  * ATTENTION si le tableau est plein, l'élémént ne sera pas ajouté
  */
-RuleId ruletabadd(RuleTab* ruletab, Rule* rule) {
+Rule* ruletabadd(RuleTab* ruletab, Rule* rule) {
     if (ruletab -> n < ruletab -> n_max) {
         ruletab -> tab[ruletab -> n] = rule;
+        rule -> id = ruletab -> n; // Pour que la rêgle conaisse son ID
         ruletab -> n++;
-        return ruletab -> n - 1;
+        return rule;
     } else {
         printf("Un élément n'a pas pu être ajouté au tableau car ce dernier est plein :/ !");
+        return NULL;
     }
 }
 
 /* Ajouter un élément au tableau */
-RuleId ruletabaddrealoc(RuleTab* ruletab, Rule* rule) {
+Rule* ruletabaddrealoc(RuleTab* ruletab, Rule* rule) {
     if (ruletab -> n == ruletab -> n_max) {
         ruletab -> tab = realloc(ruletab -> tab, ((ruletab -> n_max) + 1) * sizeof(Rule *));
     }
