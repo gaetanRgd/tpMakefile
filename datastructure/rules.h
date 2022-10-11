@@ -3,6 +3,11 @@
 
 typedef int RuleId;
 
-typedef unsigned long long RuleSet;
+typedef struct {
+    RuleId id;
+    char* name;
+    char** dependencies;
+    char** commands;
+} Rule;
 
 #endif

@@ -1,6 +1,7 @@
 #ifndef INFINITERULESET_FILE
 #define INFINITERULESET_FILE
 
+#include "rules.h"
 #include "ruleset.h"
 
 typedef RuleSet* InfiniteRuleSet;

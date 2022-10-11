@@ -23,7 +23,7 @@
 typedef unsigned int RuleId;
  
 typedef struct {
-    int id;
+    RuleId id;
     char* name;
     char** dependencies;
     char** commands;

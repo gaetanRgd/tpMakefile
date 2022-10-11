@@ -17,7 +17,7 @@
 */
 
 #include "radixlist.c"
-#include "rules.c"
+#include "rules.h"
 
 typedef struct {
     Rule** tab;
@@ -31,27 +31,32 @@ RuleTab ruletabcreate(int n_max) {
     return ruletab;
 }
 
+void ruletabfree(RuleTab* ruletab) {
+    free(ruletab -> tab);
+}
+
 /* Ajouter un élément au tableau
  * ATTENTION si le tableau est plein, l'élémént ne sera pas ajouté
  */
-void ruletabadd(RuleTab* ruletab, Rule* rule) {
+RuleId ruletabadd(RuleTab* ruletab, Rule* rule) {
     if (ruletab -> n < ruletab -> n_max) {
         ruletab -> tab[ruletab -> n] = rule;
         ruletab -> n++;
+        return ruletab -> n - 1;
     } else {
         printf("Un élément n'a pas pu être ajouté au tableau car ce dernier est plein :/ !");
     }
 }
 
 /* Ajouter un élément au tableau */
-void ruletabaddrealoc(RuleTab* ruletab, Rule* rule) {
+RuleId ruletabaddrealoc(RuleTab* ruletab, Rule* rule) {
     if (ruletab -> n == ruletab -> n_max) {
         ruletab -> tab = realloc(ruletab -> tab, ((ruletab -> n_max) + 1) * sizeof(Rule *));
     }
-    ruletabadd(ruletab, rule);
+    return ruletabadd(ruletab, rule);
 }
 
 /* Obtenir une rêgle a partir d'un identifiant */
 Rule* ruletabget(RuleTab* ruletab, RuleId id) {
-    
+    return ruletab -> tab[id];
 }
