@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #include "lecture.h"
-#include "ensemble.h"
+#include "ruleset.h"
 
 
 int main(int argc, char **argv){

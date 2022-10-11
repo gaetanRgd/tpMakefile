@@ -3,10 +3,6 @@
 
 #include<string.h>
 
-#include "lecture.h"
-#include "ensemble.h"
-#include "regle.h"
-#include "graphe.h"
 
 /* Lit le fichier donne en entree
  * Cree l'ensemble contenant les regles du fichier

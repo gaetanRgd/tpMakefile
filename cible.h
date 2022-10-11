@@ -1,13 +1,8 @@
 #ifndef CIBLE_FILE
 #define CIBLE_FILE
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-
-#include "ensemble.h"
-#include "regles.h"
-
+#include "ruleset.h"
+#include "rules.h"
 
 void make_naive(char* nom_cible, Ensemble e);
 void make(char* nom_cible, Ensemble e);
