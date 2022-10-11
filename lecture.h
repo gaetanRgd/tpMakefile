@@ -1,7 +1,9 @@
 #ifndef LECTURE_FILE
 #define LECTURE_FILE
-#include <stdio.h>
-#include <stdlib.h>
+
+#include "lecture.h"
+#include "ruleset.h"
+#include "rules.h"
 
 Ensemble lecture(char* fichier);
 int testFinFichier(FILE* f);

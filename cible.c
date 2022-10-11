@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+
+
 /* Version naive du make
  * Prend en entree le nom d'une regle(type char*) et l'ensemble des regles(type Ensemble)
  * Construit la regle passee en entree en executant les commades necessaires a la creation
