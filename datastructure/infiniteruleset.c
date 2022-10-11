@@ -17,6 +17,7 @@
 */
 
 #include "ruleset.h"
+#include "rules.h"
 
 /* TODO Changer la constante 64 de cette partie du code (impropre) */
 
