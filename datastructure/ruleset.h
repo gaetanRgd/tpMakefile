@@ -1,8 +1,6 @@
 #ifndef RULESET_FILE
 #define RULESET_FILE
 
-#include "rules.h"
-
 typedef unsigned long long RuleSet;
 
 RuleSet setcreate(void);
