@@ -22,12 +22,12 @@
 /* TODO Changer la constante 64 de cette partie du code (impropre) */
 
 /* Complexité en espace en O(n)
- * Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
+ * ATTENTION Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
  * Stocke un bit par entier possible dans l'ensemble */
 typedef RuleSet* InfiniteRuleSet;
 
 /* Création d'un ensemble d'entiers pouvant stocker des nombres de [[0, n]]
- * Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
+ * ATTENTION Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
  * Complexité en O(1) (pour le moment) */ 
 InfiniteRuleSet infinitesetcreate(int n) {
     return malloc(n / 64 * sizeof(RuleSet)); // TODO set à 0 les entiers pointés
