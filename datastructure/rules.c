@@ -32,12 +32,12 @@ Rule* str_to_Rule(RuleTab* ruletab, char* str) {
 
 /* Créer une rêgle */
 Rule* create_rule(RuleTab* ruletab, char* name) {
-
-    return ruletabadd(ruletab, rule);
+    return 0;
+    //return ruletabadd(ruletab, rule);
 }
 
 /* y Ajouter des dépendances */
-void add_requirement(RuleTab ruletab, RuleId id, char* dependencie) {
+void add_requirement(RuleTab ruletab, RuleId id, char* req) {
 }
 
 
