@@ -21,10 +21,12 @@
 
 #include "lecture.h"
 #include "ruleset.h"
+#include "graphe.h"
 
 
 int main(int argc, char **argv){
-    Ruleset e=lecture("Makefile");
+    Ruletab e = lecture("Makefile");
+    Graphe g = creerGraphe(e);
     if(argv[1]==NULL){
         make("main",e);
     }

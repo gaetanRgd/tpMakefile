@@ -18,6 +18,11 @@
 
 #include "graphe.h"
 
+Graphe creerGraphe(Ruletab e){
+    int t[e.n_max][e.n_max]={0};
+
+}
+
 Graphe newNode(int _selfId){
     Graphe g ={_selfId, NULL};
     return g;

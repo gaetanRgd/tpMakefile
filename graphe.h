@@ -10,11 +10,12 @@ struct Graphe{
 };
 
 typedef struct TabG TabG;
-struct Graphe{
+struct TabG{
     Graphe* g;
-    Graphe* suivant;
+    TabG* suivant;
 };
 
-Graphe newNode(int id);
+Graphe creerGraphe(Ruletab e);
+Graphe newNode(Ruletab e);
 
 #endif
