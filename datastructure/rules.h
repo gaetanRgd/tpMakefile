@@ -6,7 +6,7 @@ typedef int RuleId;
 typedef struct {
     RuleId id;
     char* name;
-    char** dependencies;
+    char** requirement; // LISTE CHAINEE EN FAIT 
     char** commands;
 } Rule;
 

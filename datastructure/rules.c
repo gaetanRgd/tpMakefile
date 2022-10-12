@@ -15,7 +15,6 @@
  *  /////((((////////        ^^^^                                    | |   | | | (_) | | | | | | (_) |     / /_| |_| / /_ / /_ 
  *   ////////                                                        |_|   |_|  \___/|_| |_|_|_|\___/     |____|\___/____|____|
 */
-
 #include <stdlib.h>
 
 #include "rules.h"
@@ -28,19 +27,18 @@ RuleId str_to_id(char* str) {
     return 0;
 }
 
-Rule str_to_Rule(RuleTab ruletab, char* str) {
-    return *(ruletab.tab[str_to_id(str)]);
+Rule* str_to_Rule(RuleTab* ruletab, char* str) {
+    return ruletabget(ruletab, str_to_id(str));
 }
 
 /* Créer une rêgle */
-Rule create_rule(RuleTab* ruletab, char* name) {
-    
-    return ruletabadd(ruletab);
+Rule* create_rule(RuleTab* ruletab, char* name) {
 
+    return ruletabadd(ruletab, rule);
 }
 
 /* y Ajouter des dépendances */
-void add_dependencie(RuleTab ruletab, RuleId id, char* dependencie) {
+void add_requirement(RuleTab ruletab, RuleId id, char* dependencie) {
 }
 
 
