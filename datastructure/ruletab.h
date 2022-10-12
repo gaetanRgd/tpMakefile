@@ -13,9 +13,9 @@ RuleTab ruletabcreate(int n_max);
 
 void ruletabfree(RuleTab* ruletab);
 
-RuleId ruletabadd(RuleTab* ruletab, Rule* rule);
+Rule* ruletabadd(RuleTab* ruletab, Rule* rule);
 
-RuleId ruletabaddrealoc(RuleTab* ruletab, Rule* rule);
+Rule* ruletabaddrealoc(RuleTab* ruletab, Rule* rule);
 
 Rule* ruletabget(RuleTab* ruletab, RuleId id);
 #endif
