@@ -6,7 +6,8 @@
 
 // Type grand ensemble
 
-/* Complexité en espace en O(n)
+/* Représente un ensemble de RuleId
+ * Complexité en espace en O(n)
  * ATTENTION Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
  * Stocke un bit par entier possible dans l'ensemble */
 typedef RuleSet* InfiniteRuleSet;

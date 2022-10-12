@@ -49,7 +49,9 @@ Radix radixadd(Radix radix, unsigned char* key, unsigned int value) {
 
 }
 
-
+/* Recherche la valeur associéde à la clef dans l'arbre radix
+ * Complexité en O(k) 
+ * k étant la taille de la chaîne (clef) */
 Radix radixget(Radix* radix, unsigned char* key) {
     RadixChainedList* list = radix->list;
     while ((list != NULL)) {
