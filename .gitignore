@@ -1,4 +1,5 @@
 # ignore C compiled files
 *.o
+*.code-workspace
 # Ignore VScodium directory
 /.vscode
