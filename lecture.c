@@ -26,7 +26,7 @@
  * Cree l'ensemble contenant les regles du fichier
  * Renvoie l'ensemble des regles lues dans le fichier(type Ensemble)
  */
-Ensemble lecture(char* fichier) {
+Ruletab lecture(char* fichier) {
     int taille=nbRegles(fichier);
 
     FILE* f=NULL;
@@ -39,7 +39,9 @@ Ensemble lecture(char* fichier) {
     size_t MAX_LIGNE=100;
 
 
-    //Ruletab e=ruleTabCreate(taille);
+    Ruletab e=ruletabcreate(taille);
+    Rule* r;
+    int id_rule;
     char*nom;
 
     while(!testFinFichier(f)) {
@@ -56,6 +58,8 @@ Ensemble lecture(char* fichier) {
             //setRegle(id).nom=strtok(ligne_courante,":");
             //id=creerRegle(nom);
             nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et premisses
+            r=create_rule(&e,nom);
+            id_rule=r->id;
             printf("Nom : %s\n", nom);
 
             ligne_courante=strtok(NULL, ":");//On regrde ce qu'il y a apres les :'
