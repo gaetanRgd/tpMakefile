@@ -15,15 +15,10 @@
  *  /////((((////////        ^^^^                                    | |   | | | (_) | | | | | | (_) |     / /_| |_| / /_ / /_ 
  *   ////////                                                        |_|   |_|  \___/|_| |_|_|_|\___/     |____|\___/____|____|
 */
+#include "ruletab.h"
 
 #include "radixlist.c"
 #include "rules.h"
-
-typedef struct {
-    Rule** tab;
-    int n;
-    int n_max;
-} RuleTab;
 
 /* Créer un tableau des rêgles */
 RuleTab ruletabcreate(int n_max) {

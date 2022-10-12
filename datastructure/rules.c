@@ -34,7 +34,8 @@ Rule str_to_Rule(RuleTab ruletab, char* str) {
 
 /* Créer une rêgle */
 Rule create_rule(RuleTab* ruletab, char* name) {
-    return ruletabadd(ruletab)
+    
+    return ruletabadd(ruletab);
 
 }
 

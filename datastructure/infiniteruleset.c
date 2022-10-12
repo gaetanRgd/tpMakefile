@@ -15,16 +15,12 @@
  *  /////((((////////        ^^^^                                    | |   | | | (_) | | | | | | (_) |     / /_| |_| / /_ / /_ 
  *   ////////                                                        |_|   |_|  \___/|_| |_|_|_|\___/     |____|\___/____|____|
 */
+#include "infiniteruleset.h"
 
 #include "ruleset.h"
 #include "rules.h"
 
 /* TODO Changer la constante 64 de cette partie du code (impropre) */
-
-/* Complexité en espace en O(n)
- * ATTENTION Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
- * Stocke un bit par entier possible dans l'ensemble */
-typedef RuleSet* InfiniteRuleSet;
 
 /* Création d'un ensemble d'entiers pouvant stocker des nombres de [[0, n]]
  * ATTENTION Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
