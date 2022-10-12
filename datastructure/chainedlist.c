@@ -53,7 +53,7 @@ ListHead append(ListHead* list, char* element) {
 }
 
 char* pop(ListHead* list) {
-    List* node = list->head;
+    List* node = list -> head;
     list -> head = node -> next;
     char* element = node -> element;
     freelistnode(node);

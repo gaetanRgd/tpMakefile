@@ -20,6 +20,7 @@
 #include "rules.h"
 
 #include "ruletab.h"
+#include "chainedlist.h"
 
 /* STR to ID == Arbre Radix*/
 RuleId str_to_id(char* str) {
