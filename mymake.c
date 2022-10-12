@@ -6,7 +6,12 @@
 
 
 int main(int argc, char **argv){
-    Ensemble e=lecture(argv[1]);
-    make(e.premiereRegle,e);
+    Ruleset e=lecture("Makefile");
+    if(argv[1]==NULL){
+        make("main",e);
+    }
+    else {
+        make(argv[1],e);
+    }
     return 0;
 }
