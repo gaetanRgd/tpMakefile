@@ -1,3 +1,21 @@
+/*
+ *             ///((/////                   *&&&&&&&&              %&&&&&&&&
+ *          //(/////((//////              /&&&     *&&&          &&&&     %&&&
+ *        /(//^     ^//(//(///            &&&                   #&&
+ *      ///^,        //////////           &&&                    &&&
+ *               //////////(///            &&&&&&         *%&(    &&&&&&%
+ *             //////(///////////          &&&&&&      &&&&&&&&&&%   *&&&&&&&
+ *             ^^^////////(//^////        &&&        %&&#       &&&        &&&*
+ *             ^^^/(/////////^////        &&&        &&&        #&&         &&%
+ *          ^^^  ////////(////^^^^        (&&&     *&&&          &&&%     #&&&
+ *       ^^^^^^^^/(////((////^ ^^^^         (&&&&&&&&              &&&&&&&&&                               __     _  __   __
+ *     .^^^///////////////////                                       |  __ \                              |__ \ / _ \__ \|__ \
+ *     /^///////,..//////^//////^                                    | |__) | __ ___  _ __ ___   ___         ) | | | | ) |  ) |
+ * ////////////#////////    ^^^^^                                    |  ___/ '__/ _ \| '_ ` _ \ / _ \       / /| | | |/ /  / /
+ *  /////((((////////        ^^^^                                    | |   | | | (_) | | | | | | (_) |     / /_| |_| / /_ / /_
+ *   ////////                                                        |_|   |_|  \___/|_| |_|_|_|\___/     |____|\___/____|____|
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,17 +27,19 @@
  * Renvoie l'ensemble des regles lues dans le fichier(type Ensemble)
  */
 Ensemble lecture(char* fichier) {
+    int taille=nbRegles(fichier);
+
     FILE* f=NULL;
     f=fopen(fichier,"r");
     if(f==NULL) {
         exit(1);
     }
-    int id=1;
     char* ligne_courante;
     char* token;
     size_t MAX_LIGNE=100;
 
-    //Ensemble e=creerEnsemble();
+
+    //Ruletab e=ruleTabCreate(taille);
     char*nom;
 
     while(!testFinFichier(f)) {
@@ -31,9 +51,10 @@ Ensemble lecture(char* fichier) {
 
             printf("********fin de la regle********\n\n");
             printf("********nouvelle regle********\n");
-            //ajouterRegle(e,creerRegle(id));
-            id++;
-            //setRegle(e).nom=strtok(ligne_courante,":");
+            // //ajouterRegle(e,creerRegle(nom));
+
+            //setRegle(id).nom=strtok(ligne_courante,":");
+            //id=creerRegle(nom);
             nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et premisses
             printf("Nom : %s\n", nom);
 

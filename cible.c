@@ -1,3 +1,21 @@
+/*
+ *             ///((/////                   *&&&&&&&&              %&&&&&&&&
+ *          //(/////((//////              /&&&     *&&&          &&&&     %&&&
+ *        /(//^     ^//(//(///            &&&                   #&&
+ *      ///^,        //////////           &&&                    &&&
+ *               //////////(///            &&&&&&         *%&(    &&&&&&%
+ *             //////(///////////          &&&&&&      &&&&&&&&&&%   *&&&&&&&
+ *             ^^^////////(//^////        &&&        %&&#       &&&        &&&*
+ *             ^^^/(/////////^////        &&&        &&&        #&&         &&%
+ *          ^^^  ////////(////^^^^        (&&&     *&&&          &&&%     #&&&
+ *       ^^^^^^^^/(////((////^ ^^^^         (&&&&&&&&              &&&&&&&&&                               __     _  __   __
+ *     .^^^///////////////////                                       |  __ \                              |__ \ / _ \__ \|__ \
+ *     /^///////,..//////^//////^                                    | |__) | __ ___  _ __ ___   ___         ) | | | | ) |  ) |
+ * ////////////#////////    ^^^^^                                    |  ___/ '__/ _ \| '_ ` _ \ / _ \       / /| | | |/ /  / /
+ *  /////((((////////        ^^^^                                    | |   | | | (_) | | | | | | (_) |     / /_| |_| / /_ / /_
+ *   ////////                                                        |_|   |_|  \___/|_| |_|_|_|\___/     |____|\___/____|____|
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -8,7 +26,7 @@
  * Construit la regle passee en entree en executant les commades necessaires a la creation
  * Ne renvoie rien
  */
-void make_naive(char* nom_cible, Ensemble e){
+void make_naive(char* nom_cible, Ruleset e){
     int id_cible=-1;
     id_cible=parcourir(e, nom_cible);
 
@@ -25,7 +43,7 @@ void make_naive(char* nom_cible, Ensemble e){
     }
     else{ // Construire recursivement la cible
         // Contructino de chacune des premisses
-        Regle r =get_Regle(id);
+        Rules r =get_Regle(id);
         Liste* p = r.premisses;
         while(p != NULL) {
             make_naive(p->nom);
@@ -45,7 +63,7 @@ void make_naive(char* nom_cible, Ensemble e){
  * Construit la regle passee en entree en executant les commades necessaires a la creation si un des prerequis a ete modifie
  * Ne renvoie rien
  */
-void make(char* nom_cible, Ensemble e){
+void make(char* nom_cible, Ruleset e){
     int id_cible=-1;
     id_cible=parcourir(e, nom_cible);
 
@@ -62,12 +80,12 @@ void make(char* nom_cible, Ensemble e){
     }
     else{ // Construire recursivement la cible
         // Contructino de chacune des premisses
-        Regle r =get_Regle(id);
+        Rules r =get_Regle(id_cible);
         Liste* p = r.premisses;
         int a_change=0; // 0 si aucun des fichiers n'a change et 1 sinon
         while(p != NULL) {
             if(getTime(nom_cible)>getTime(p->nom)){
-                make_naive(p->nom);
+                make(p->nom, e);
                 a_change=1;
             }
             p=p->suivant;
