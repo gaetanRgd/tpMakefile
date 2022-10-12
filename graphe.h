@@ -9,13 +9,6 @@ struct Graphe{
     TabG* fils;
 };
 
-typedef struct TabG TabG;
-struct TabG{
-    Graphe* g;
-    TabG* suivant;
-};
-
 Graphe creerGraphe(Ruletab e);
-Graphe newNode(Ruletab e);
 
 #endif

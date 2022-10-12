@@ -20,14 +20,13 @@
 
 Graphe creerGraphe(Ruletab e){
     int t[e.n_max][e.n_max]={0};
-
-}
-
-Graphe newNode(int _selfId){
-    Graphe g ={_selfId, NULL};
-    return g;
-}
-
-void append(Graphe g){
+    Rule* r;
+    char** pre;
+    for(int i=0;i<e.n_max;i++){
+        r=e.tab[i];
+        pre=r.requirement;
+        //parcourir les premisses
+        // a chaque premisse : t[strtoid(*r.nom)][strtoid(*r.premisse.nom)]
+    }
 
 }
