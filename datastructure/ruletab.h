@@ -1,5 +1,5 @@
-#ifndef RULESET_FILE
-#define RULESET_FILE
+#ifndef RULETAB_FILE
+#define RULETAB_FILE
 
 #include "rules.h"
 

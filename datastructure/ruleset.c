@@ -19,11 +19,8 @@
 #include <math.h>
 #include <stdio.h>
 
+#include "ruleset.h"
 #include "rules.h"
-
-/* Compexité en mémoire en O(1)
- * Stocke juste un entier */
-typedef unsigned long long RuleSet;
 
 /* Créer un set vide strockant des entiers de 0 à 64
  * Complexité en O(1) */  

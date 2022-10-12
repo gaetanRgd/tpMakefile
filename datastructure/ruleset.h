@@ -1,6 +1,8 @@
 #ifndef RULESET_FILE
 #define RULESET_FILE
 
+/* Compexité en mémoire en O(1)
+ * Stocke juste un entier */
 typedef unsigned long long RuleSet;
 
 RuleSet setcreate(void);
