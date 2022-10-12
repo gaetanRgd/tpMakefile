@@ -19,7 +19,6 @@
 
 #include "rules.h"
 
-#include "infiniteruleset.h"
 #include "ruletab.h"
 
 /* STR to ID == Arbre Radix*/
