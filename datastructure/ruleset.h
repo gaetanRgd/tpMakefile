@@ -1,7 +1,8 @@
 #ifndef RULESET_FILE
 #define RULESET_FILE
 
-/* Compexité en mémoire en O(1)
+/* Représente un ensemble de RuleId
+ * Compexité en mémoire en O(1)
  * Stocke juste un entier */
 typedef unsigned long long RuleSet;
 
