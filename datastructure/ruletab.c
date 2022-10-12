@@ -20,7 +20,8 @@
 #include "radixlist.c"
 #include "rules.h"
 
-/* Créer un tableau des rêgles */
+/* Créer un tableau des rêgles
+ * ATTENTION Ne pas oublier de libérer l'espace mémoire avec ruletabfree(ruletab)*/
 RuleTab ruletabcreate(int n_max) {
     RuleTab ruletab = {malloc(n_max * sizeof(Rule *)), 0, n_max};
     return ruletab;
