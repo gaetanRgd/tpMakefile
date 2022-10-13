@@ -4,3 +4,4 @@
 *.gch
 # Ignore VScodium directory
 /.vscode
+mymake
