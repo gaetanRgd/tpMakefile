@@ -2,6 +2,12 @@
 #define LECTURE_FILE
 
 
+#include <stdio.h>
+#include <stdlib.h>
+
+#include<string.h>
+
+
 #include "datastructure/ruleset.h"
 #include "datastructure/ruletab.h"
 #include "datastructure/rule_function.h"

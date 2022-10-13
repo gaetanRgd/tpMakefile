@@ -16,10 +16,6 @@
  *   ////////                                                        |_|   |_|  \___/|_| |_|_|_|\___/     |____|\___/____|____|
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-
-#include<string.h>
 
 #include "lecture.h"
 
