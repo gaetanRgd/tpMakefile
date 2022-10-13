@@ -34,16 +34,21 @@ Rule* str_to_Rule(RuleTab* ruletab, char* str) {
 
 /* Créer une rêgle */
 Rule* create_rule(RuleTab* ruletab, char* name) {
-    return 0;
-    //return ruletabadd(ruletab, rule);
+    Rule* rule = malloc(sizeof(Rule));
+    ruletabadd(ruletab, rule);
+    *rule -> name = name;
+    *rule -> commands = createlist();
+    *rule -> requirement = createlist();
+    return rule;
 }
 
 /* y Ajouter des dépendances */
 void add_requirement(RuleTab ruletab, RuleId id, char* req) {
+
 }
 
-
 /* y Ajouter des commandes */
+
 
 /* Supprimer une rêgle */
 
