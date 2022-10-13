@@ -42,7 +42,7 @@ int is_empty(ListHead* list) {
     return list -> head == NULL; 
 }
 
-ListHead append(ListHead* list, char* element) {
+void append(ListHead* list, char* element) {
     List* node = createlistnode(element);
     if (is_empty(list)) {
         list->head = node;

@@ -21,7 +21,7 @@ ListHead createlist(void);
 
 int is_empty(ListHead* list);
 
-ListHead append(ListHead* list, char* element);
+void append(ListHead* list, char* element);
 
 char* pop(ListHead* list); 
 #endif
