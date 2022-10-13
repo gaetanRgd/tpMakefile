@@ -21,12 +21,14 @@
 
 #include "lecture.h"
 #include "datastructure/ruleset.h"
+#include "datastructure/ruletab.h"
 #include "graphe.h"
+#include "cible.h"
 
 
 int main(int argc, char **argv){
-    Ruletab e = lecture("Makefile");
-    Graphe g = creerGraphe(e);
+    RuleTab e = lecture("Makefile");
+    //Graphe g = creerGraphe(e);
     if(argv[1]==NULL){
         make("main",e);
     }
