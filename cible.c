@@ -85,7 +85,7 @@ void make(char* nom_cible, Ruleset e){
         Liste* p = r.premisses;
         int a_change=0; // 0 si aucun des fichiers n'a change et 1 sinon
         while(p != NULL) {
-            if(getTime(nom_cible)>getTime(p->nom)){
+            if(getTime(nom_cible)>getTime(p)->nom)){
                 make(p->nom, e);
                 a_change=1;
             }
