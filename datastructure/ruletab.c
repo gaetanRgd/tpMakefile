@@ -18,7 +18,6 @@
 
 #include "ruletab.h"
 
-#include "radixlist.c"
 #include "rule_struct.h"
 
 /* Créer un tableau des rêgles
