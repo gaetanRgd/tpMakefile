@@ -68,6 +68,8 @@ void make(char* nom_cible, Ruletab e){
     int* id_cible;
     id_cible=strtoid(e, nom_cible);
 
+    printf("Construction de %s\n", nom_cible);
+
     if (id_cible==NULL){
         char* extension;
         char* nom = nom_cible;// je cree une copie pour ne pas detruire la chaine nom_cible avec le strtok
@@ -86,6 +88,7 @@ void make(char* nom_cible, Ruletab e){
         List* p = get_requirement(r);
         int a_change=0; // 0 si aucun des fichiers n'a change et 1 sinon
         while(*p != NULL) {
+            printf("premisse : %s\n", p->nom);
             if(getTime(nom_cible)>getTime(p->element)){
                 make(p->element, e);
                 a_change=1;
@@ -95,13 +98,16 @@ void make(char* nom_cible, Ruletab e){
         // Execution des regles
         if(a_change){// On ne reconstruit que si une premisse au moins a change
             List* c = get_requirement(r);
+            printf("Execution des commandes de %s :\n", nom_cible);
             while(*c != NULL){
+                printf("commande : %s\n", c->nom_cible);
                 system(c->element);
                 c=c->next;
             }
         }
 
     }
+    printf("Fin de construction de %s\n\n", nom_cible);
 }
 /* Permet d'obtenir la date de la derniere modification d'un fichier
  * Prend en entree le nom du fichier(type char*)
