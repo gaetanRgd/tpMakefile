@@ -46,7 +46,7 @@ Radix radixcreate(void) {
  * Complexité en O(k) 
  * k étant la taille de la chaîne (clef) */
 Radix radixadd(Radix radix, unsigned char* key, unsigned int value) {
-
+    
 }
 
 /* Recherche la valeur associéde à la clef dans l'arbre radix
