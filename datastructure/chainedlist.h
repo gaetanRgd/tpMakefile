@@ -2,8 +2,8 @@
 #define CHAINEDLIST_FILE
 
 /* Liste chainée de chaînes de caractères */
-typedef struct {
-    List* next;
+typedef struct List {
+    struct List *next;
     char* element;
 } List;
 
