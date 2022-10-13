@@ -37,8 +37,8 @@ Rule* create_rule(RuleTab* ruletab, char* name) {
     Rule* rule = malloc(sizeof(Rule));
     ruletabadd(ruletab, rule);
     *rule -> name = name;
-    *rule -> commands = createlist();
-    *rule -> requirement = createlist();
+    rule -> commands = createlist();
+    rule -> requirement = createlist();
     return rule;
 }
 
@@ -51,7 +51,7 @@ void free_rule_by_id(RuleTab* ruletab, RuleId id) {
 }
 
 void add_requirement(Rule* rule, char* req) {
-    append(rule -> requirement, req);
+    append(&(rule -> requirement), req);
 }
 
 /* y Ajouter des dépendances */
@@ -60,7 +60,7 @@ void add_requirement_by_id(RuleTab* ruletab, RuleId id, char* req) {
 }
 
 List* get_requirement_list(Rule* rule) {
-    return rule -> requirement -> head;
+    return rule -> requirement.head;
 }
 
 List* get_requirement_list_by_id(RuleTab* ruletab, RuleId id) {
@@ -68,7 +68,7 @@ List* get_requirement_list_by_id(RuleTab* ruletab, RuleId id) {
 }
 
 void add_command(Rule* rule, char* cmd) {
-    append(rule -> commands, cmd);
+    append(&(rule -> commands), cmd);
 }
 
 /* y Ajouter des dépendances */
@@ -77,7 +77,7 @@ void add_command_by_id(RuleTab* ruletab, RuleId id, char* cmd) {
 }
 
 List* get_command_list(Rule* rule) {
-    return rule -> commands -> head;
+    return rule -> commands.head;
 }
 
 List* get_command_list_by_id(RuleTab* ruletab, RuleId id) {
