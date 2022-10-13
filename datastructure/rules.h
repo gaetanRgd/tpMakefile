@@ -6,8 +6,8 @@ typedef int RuleId;
 typedef struct {
     RuleId id;
     char* name;
-    char** requirement; // LISTE CHAINEE EN FAIT 
-    char** commands;
+    ListHead requirement; // LISTE CHAINEE EN FAIT 
+    ListHead commands;
 } Rule;
 
 #endif

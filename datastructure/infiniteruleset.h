@@ -14,7 +14,7 @@ typedef RuleSet* InfiniteRuleSet;
 
 // Fonctions sur les grands ensembles
 
-InfiniteRuleSet infinitesetcreate(int n);
+InfiniteRuleSet infinitesetcreate(int n_max);
 
 void infinitesetfree(InfiniteRuleSet set);
 

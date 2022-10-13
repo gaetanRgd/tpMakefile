@@ -26,8 +26,8 @@
 /* Création d'un ensemble d'entiers pouvant stocker des nombres de [[0, n]]
  * ATTENTION Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
  * Complexité en O(1) (pour le moment) */ 
-InfiniteRuleSet infinitesetcreate(int n) {
-    return malloc(n / 64 * sizeof(RuleSet)); // TODO set à 0 les entiers pointés
+InfiniteRuleSet infinitesetcreate(int n_max) {
+    return malloc(n_max / 64 * sizeof(RuleSet)); // TODO set à 0 les entiers pointés
 }
 
 /* Supprime l'ensemble fourni en libérant l'espace mémoire associé
