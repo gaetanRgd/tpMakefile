@@ -50,7 +50,7 @@ Rule* ruletabadd(RuleTab* ruletab, Rule* rule) {
 /* Ajouter un élément au tableau */
 Rule* ruletabaddrealoc(RuleTab* ruletab, Rule* rule) {
     if (ruletab -> n == ruletab -> n_max) {
-        ruletab -> tab = realloc(ruletab -> tab, ((ruletab -> n_max) + 1) * sizeof(Rule *));
+        ruletab -> tab = realloc(ruletab -> tab, ((ruletab -> n_max) * 2) * sizeof(Rule *));
     }
     return ruletabadd(ruletab, rule);
 }
