@@ -15,11 +15,12 @@
  *  /////((((////////        ^^^^                                    | |   | | | (_) | | | | | | (_) |     / /_| |_| / /_ / /_ 
  *   ////////                                                        |_|   |_|  \___/|_| |_| |_|\___/     |____|\___/____|____|
 */
+#include <stdlib.h>
 
 #include "infiniteruleset.h"
 
 #include "ruleset.h"
-#include "rules.h"
+#include "rule_struct.h"
 
 /* TODO Changer la constante 64 de cette partie du code (impropre) */
 
@@ -40,12 +41,14 @@ void infinitesetfree(InfiniteRuleSet set) {
  * Complexité en O(1) */
 InfiniteRuleSet infinitesetadd(InfiniteRuleSet set, RuleId id) {
     set[id / 64] = setadd(set[id / 64], id % 64);
+    return set;
 }
 
 /* Suppression d'un entier 
  * Complexité en O(1) */
 InfiniteRuleSet infinitesetdel(InfiniteRuleSet set, RuleId id) {
     set[id / 64] = setdel(set[id / 64], id % 64);
+    return set;
 }
 
 /* Test d'appartenance à l'ensemble 
@@ -55,9 +58,10 @@ int infinitesetin(InfiniteRuleSet set, RuleId id) {
 }
 
 /* Test d'équivalence d'ensemble 
- * complexité en o(n/64) */
+ * complexité en o(n/64)
 int infiniteseteq(InfiniteRuleSet set_a, InfiniteRuleSet set_b) {
     return 0;
 }
+*/
 
 /* TODO Créer une fonction iter ? */

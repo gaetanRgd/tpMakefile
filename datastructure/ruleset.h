@@ -1,7 +1,7 @@
 #ifndef RULESET_FILE
 #define RULESET_FILE
 
-#include "rules.h"
+#include "rule_struct.h"
 
 /* Représente un ensemble de RuleId
  * Compexité en mémoire en O(1)

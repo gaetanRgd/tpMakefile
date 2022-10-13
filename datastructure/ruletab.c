@@ -19,7 +19,7 @@
 #include "ruletab.h"
 
 #include "radixlist.c"
-#include "rules.h"
+#include "rule_struct.h"
 
 /* Créer un tableau des rêgles
  * ATTENTION Ne pas oublier de libérer l'espace mémoire avec ruletabfree(ruletab)*/
