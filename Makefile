@@ -28,20 +28,8 @@ graphe.o: graphe.c graphe.h datastructure/ruletab.h
 lecture.o: lecture.c lecture.h datastructure/rule_struct.h datastructure/rule_function.h datastructure/ruleset.h datastructure/ruletab.h
 	gcc $(CFLAGS) -c $<
 
-
 clean :
-<<<<<<< HEAD
 	find . -type f -name '*.o' -exec rm {} +
 	find . -type f -name '*.h.gch' -exec rm {} +
 .PHONY: clean
-=======
-<<<<<<< HEAD
-	rm -f *.o
-	rm -f *.h.gch
-.PHONY: clean
-=======
-	rm -f -r *.o
-	rm -f -r *.h.gch
-.PHONY: clean
->>>>>>> 049b2c0dce019ca8485634ef2f9d5eda0af6b3a5
->>>>>>> ade760fd468593a50700e331b8a61f87349a613d
+
