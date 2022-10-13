@@ -1,7 +1,7 @@
 #ifndef INFINITERULESET_FILE
 #define INFINITERULESET_FILE
 
-#include "rules.h"
+#include "rule_struct.h"
 #include "ruleset.h"
 
 // Type grand ensemble

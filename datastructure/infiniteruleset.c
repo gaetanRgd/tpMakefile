@@ -15,11 +15,12 @@
  *  /////((((////////        ^^^^                                    | |   | | | (_) | | | | | | (_) |     / /_| |_| / /_ / /_ 
  *   ////////                                                        |_|   |_|  \___/|_| |_| |_|\___/     |____|\___/____|____|
 */
+#include <stdlib.h>
 
 #include "infiniteruleset.h"
 
 #include "ruleset.h"
-#include "rules.h"
+#include "rule_struct.h"
 
 /* TODO Changer la constante 64 de cette partie du code (impropre) */
 

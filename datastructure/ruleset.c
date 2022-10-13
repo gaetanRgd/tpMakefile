@@ -20,7 +20,7 @@
 #include <stdio.h>
 
 #include "ruleset.h"
-#include "rules.h"
+#include "rule_struct.h"
 
 /* Créer un set vide strockant des entiers de 0 à 64
  * Complexité en O(1) */  

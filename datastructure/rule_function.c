@@ -18,7 +18,7 @@
 
 #include <stdlib.h>
 
-#include "rules.h"
+#include "rule_struct.h"
 
 #include "ruletab.h"
 #include "chainedlist.h"

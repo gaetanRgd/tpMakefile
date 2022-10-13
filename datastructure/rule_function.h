@@ -1,17 +1,10 @@
-#ifndef RULES_FILE
-#define RULES_FILE
+#ifndef RULE_FUNCTION_FILE
+#define RULE_FUNCTION_FILE
 
 #include "ruletab.h"
 #include "chainedlist.h"
+#include "rule_struct.h"
 
-typedef int RuleId;
-
-typedef struct {
-    RuleId id;
-    char* name;
-    ListHead requirement; // LISTE CHAINEE EN FAIT 
-    ListHead commands;
-} Rule;
 
 RuleId* str_to_id(RuleTab* ruletab, char* str);
 

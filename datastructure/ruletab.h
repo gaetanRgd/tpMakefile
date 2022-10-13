@@ -1,7 +1,7 @@
 #ifndef RULETAB_FILE
 #define RULETAB_FILE
 
-#include "rules.h"
+#include "rule_struct.h"
 
 typedef struct {
     Rule** tab;
