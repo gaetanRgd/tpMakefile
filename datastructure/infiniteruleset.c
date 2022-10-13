@@ -58,9 +58,10 @@ int infinitesetin(InfiniteRuleSet set, RuleId id) {
 }
 
 /* Test d'équivalence d'ensemble 
- * complexité en o(n/64) */
+ * complexité en o(n/64)
 int infiniteseteq(InfiniteRuleSet set_a, InfiniteRuleSet set_b) {
     return 0;
 }
+*/
 
 /* TODO Créer une fonction iter ? */
