@@ -1,7 +1,10 @@
-# ignore C compiled files
+# ignore some filetype
 *.o
 *.code-workspace
 *.gch
 # Ignore VScodium directory
 /.vscode
+# Ignore exec
 mymake
+# Ignore valgrind file
+vgcore*
