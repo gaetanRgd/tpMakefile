@@ -19,6 +19,16 @@ ruletab.o: ruletab.c ruletab.h rule_struct.h
 rule_function.o: rule_function.c rule_struct.h ruletab.h chainedlist.h
 	gcc $(CFLAGS) -c $<
 
+cible.o: cible.c cible.h rule_struct.h rule_function.h ruleset.h
+	gcc $(CFLAGS) -c $<
+
+graphe.o: graphe.c graphe.h ruletab.h
+	gcc $(CFLAGS) -c $<
+
+lecture.o: lecture.c lecture.h rule_struct.h rule_function.h ruleset.h ruletab.h
+	gcc $(CFLAGS) -c $<
+
+
 clean :
 	rm -f *.o
 	rm -f *.h.gch
