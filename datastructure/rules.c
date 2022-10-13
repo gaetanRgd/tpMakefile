@@ -24,12 +24,12 @@
 #include "chainedlist.h"
 
 /* STR to ID == Arbre Radix*/
-RuleId* str_to_id(char* str) {
+RuleId* str_to_id(RuleTab* ruletab, char* str) {
     return 0;
 }
 
 Rule* str_to_Rule(RuleTab* ruletab, char* str) {
-    return ruletabget(ruletab, str_to_id(str));
+    return ruletabget(ruletab, str_to_id(ruletab, str));
 }
 
 /* Créer une rêgle */
