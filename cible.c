@@ -31,7 +31,8 @@ void make_naive(char* nom_cible, Ruleset e){
     id_cible=parcourir(e, nom_cible);
 
     if (id_cible==-1){
-        char*extension;
+        char* extension;
+        char* nom = nom_cible;
         extension=strtok(nom, ".");
         extension=strtok(NULL, ".");
         if(extension == "o" ) {
@@ -46,13 +47,13 @@ void make_naive(char* nom_cible, Ruleset e){
         Rules r =get_Regle(id);
         Liste* p = r.premisses;
         while(p != NULL) {
-            make_naive(p->nom);
+            make_naive(p->nom_cible);
             p=p->suivant;
         }
         // Execution des regles
         Liste c=r.commandes;
         while(c != NULL) {
-            system(c->nom);
+            system(c->nom_cible);
             c=c->suivant;
         }
     }
@@ -84,7 +85,7 @@ void make(char* nom_cible, Ruleset e){
         Liste* p = r.premisses;
         int a_change=0; // 0 si aucun des fichiers n'a change et 1 sinon
         while(p != NULL) {
-            if(getTime(nom_cible)>getTime(p->nom)){
+            if(getTime(nom_cible)>getTime(p)->nom)){
                 make(p->nom, e);
                 a_change=1;
             }
@@ -111,4 +112,3 @@ long int getTime(char* fichier) {
 
     return stats.st_mtime;
 }
-

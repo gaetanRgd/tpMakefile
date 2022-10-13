@@ -21,6 +21,8 @@
 
 #include<string.h>
 
+#include "lecture.h"
+
 
 /* Lit le fichier donne en entree
  * Cree l'ensemble contenant les regles du fichier
@@ -28,6 +30,7 @@
  */
 Ruletab lecture(char* fichier) {
     int taille=nbRegles(fichier);
+    printf("%d", taille);
 
     FILE* f=NULL;
     f=fopen(fichier,"r");
@@ -67,16 +70,18 @@ Ruletab lecture(char* fichier) {
 
             printf("premisses : ");
             while(token != NULL) { // Parcours de la liste des premisses
-                //ajouterP(getRegle(e),token);
                 //retirer le caractere \n de la derniere premisse ( le remplacer par \O)
                 remplacer(token,'\n','\0', strlen(token));
+
                 printf("%s, ", token);
+                addPremisse(r, token);
                 token=strtok(NULL, " ");
             }
         }
         else if(*(ligne_courante)=='\t' ){ // La ligne entiere donne tout de suite la commande (avec le caractere \n pour qu'elles'execure toute seule)
             //ajouterC(getRegle(e),ligne_courante);
             printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t
+            addCommande(r, ligne_courante+1);//On ne veut pas le caractere \t
         }
 
 
@@ -112,4 +117,27 @@ void remplacer(char* s1, char c2, char c3, int n) {
         }
         i++;
     }
+}
+
+/*Permet de connaitre le nombre de regles dans le fichier avant de creer toutes les structures
+ * Prend en entree le nom du fichier ou sont stockees les regles
+ * Renvoie le nombre de regles dans le fichier
+ */
+int nbRegles(char* fichier){
+    FILE* f=NULL;
+    size_t MAX_LIGNE=100;
+    f=fopen(fichier,"r");
+    if(f==NULL) {
+        exit(1);
+    }
+    int taille=0;
+    char* ligne_courante;
+    while(!testFinFichier(f)) {
+        getline(&ligne_courante, &MAX_LIGNE, f);
+        if(*(ligne_courante)!='\t' && strlen(ligne_courante)>1) {
+            taille++;
+        }
+    }
+    fclose(f);
+    return taille;
 }
