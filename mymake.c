@@ -33,5 +33,7 @@ int main(int argc, char **argv){
     else {
         make(argv[1],e);
     }
+
+    ruletabfree(&e);
     return 0;
 }

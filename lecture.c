@@ -52,20 +52,17 @@ Ruletab lecture(char* fichier) {
         getline(&ligne_courante, &MAX_LIGNE, f);
 
 
-        if(*(ligne_courante)!='\t' && strlen(ligne_courante)>1) {
+        if(*(ligne_courante)!='\t' && strlen(ligne_courante)>1) { // Si la ligne n'est pas vide et qu'elle n'est pas une commande, c'est un debut de nouvelle regle
 
             printf("********fin de la regle********\n\n");
             printf("********nouvelle regle********\n");
-            // //ajouterRegle(e,creerRegle(nom));
 
-            //setRegle(id).nom=strtok(ligne_courante,":");
-            //id=creerRegle(nom);
             nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et premisses
             r=create_rule(&e,nom);
-            id_rule=r->id;
+            id_rule=r->id; //get l'id
             printf("Nom : %s\n", nom);
 
-            ligne_courante=strtok(NULL, ":");//On regrde ce qu'il y a apres les :'
+            ligne_courante=strtok(NULL, ":");//On regrde ce qu'il y a apres les :
             token=strtok(ligne_courante, " ");
 
             printf("premisses : ");
@@ -74,14 +71,13 @@ Ruletab lecture(char* fichier) {
                 remplacer(token,'\n','\0', strlen(token));
 
                 printf("%s, ", token);
-                addPremisse(r, token);
+                add_requirement(e,id, token);
                 token=strtok(NULL, " ");
             }
         }
         else if(*(ligne_courante)=='\t' ){ // La ligne entiere donne tout de suite la commande (avec le caractere \n pour qu'elles'execure toute seule)
-            //ajouterC(getRegle(e),ligne_courante);
+            add_command(e,id, ligne_courante+1);//On ne veut pas le caractere \t
             printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t
-            addCommande(r, ligne_courante+1);//On ne veut pas le caractere \t
         }
 
 
