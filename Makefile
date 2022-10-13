@@ -20,6 +20,6 @@ datastructure/rule_function.o: datastructure/rule_function.c datastructure/rule_
 	gcc $(CFLAGS) -c $< -o $@
 
 clean :
-	rm -f *.o
-	rm -f *.h.gch
+	rm -f -r *.o
+	rm -f -r *.h.gch
 .PHONY: clean
