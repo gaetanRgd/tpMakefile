@@ -33,7 +33,7 @@ int main(int argc, char **argv){
 
     //Graphe g = creerGraphe(e);
 
-    printf("Execution des commandes :\n")
+    printf("Execution des commandes :\n");
     if(argv[1]==NULL){
         make("main",e);
     }

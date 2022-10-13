@@ -2,8 +2,8 @@
 #define CIBLE_FILE
 
 #include "datastructure/ruleset.h"
-#include "datastructure/rules_function.h"
-#include "datastructure/rules_struct.h"
+#include "datastructure/rule_function.h"
+#include "datastructure/rule_struct.h"
 
 void make_naive(char* nom_cible, RuleTab e);
 void make(char* nom_cible, RuleTab e);
