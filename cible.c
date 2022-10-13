@@ -64,12 +64,13 @@ void make_naive(char* nom_cible, Ruleset e){
  * Construit la regle passee en entree en executant les commades necessaires a la creation si un des prerequis a ete modifie
  * Ne renvoie rien
  */
-void make(char* nom_cible, Ruleset e){
-    int id_cible=-1;
-    id_cible=parcourir(e, nom_cible);
+void make(char* nom_cible, Ruletab e){
+    int* id_cible;
+    id_cible=strtoid(e, nom_cible);
 
-    if (id_cible==-1){
-        char*extension;
+    if (id_cible==NULL){
+        char* extension;
+        char* nom = nom_cible;// je cree une copie pour ne pas detruire la chaine nom_cible avec le strtok
         extension=strtok(nom, ".");
         extension=strtok(NULL, ".");
         if(extension == "o" ) {
@@ -80,23 +81,23 @@ void make(char* nom_cible, Ruleset e){
         }
     }
     else{ // Construire recursivement la cible
-        // Contructino de chacune des premisses
-        Rules r =get_Regle(id_cible);
-        Liste* p = r.premisses;
+        // Contruction de chacune des premisses
+        Rules r = ruletabget(&e,*id_cible);
+        List* p = get_requirement(r);
         int a_change=0; // 0 si aucun des fichiers n'a change et 1 sinon
-        while(p != NULL) {
-            if(getTime(nom_cible)>getTime(p)->nom)){
-                make(p->nom, e);
+        while(*p != NULL) {
+            if(getTime(nom_cible)>getTime(p->element)){
+                make(p->element, e);
                 a_change=1;
             }
-            p=p->suivant;
+            p=p->next;
         }
         // Execution des regles
         if(a_change){// On ne reconstruit que si une premisse au moins a change
-            Liste c=r.commandes;
-            while(c != NULL) {
-                system(c->nom);
-                c=c->suivant;
+            List* c = get_requirement(r);
+            while(*c != NULL){
+                system(c->element);
+                c=c->next;
             }
         }
 

@@ -1,8 +1,8 @@
 #ifndef CIBLE_FILE
 #define CIBLE_FILE
 
-#include "ruleset.h"
-#include "rules.h"
+#include "datastructure/ruleset.h"
+#include "datastructure/rules.h"
 
 void make_naive(char* nom_cible, Ruleset e);
 void make(char* nom_cible, Ruleset e);

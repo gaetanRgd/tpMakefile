@@ -20,7 +20,7 @@
 #include <stdio.h>
 
 #include "lecture.h"
-#include "ruleset.h"
+#include "datastructure/ruleset.h"
 #include "graphe.h"
 
 
@@ -33,5 +33,7 @@ int main(int argc, char **argv){
     else {
         make(argv[1],e);
     }
+
+    ruletabfree(&e);
     return 0;
 }
