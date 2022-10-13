@@ -4,8 +4,8 @@
 
 #include "datastructure/ruleset.h"
 #include "datastructure/ruletab.h"
-#include "datastructure/rules_function.h"
-#include "datastructure/rules_struct.h"
+#include "datastructure/rule_function.h"
+#include "datastructure/rule_struct.h"
 
 RuleTab lecture(char* fichier);
 int testFinFichier(FILE* f);
