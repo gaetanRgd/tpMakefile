@@ -42,6 +42,14 @@ Rule* create_rule(RuleTab* ruletab, char* name) {
     return rule;
 }
 
+void free_rule(Rule* rule) {
+    free(rule);
+}
+
+void free_rule_by_id(RuleTab* ruletab, RuleId id) {
+    free_rule(ruletabget(ruletab, id));
+}
+
 /* y Ajouter des dépendances */
 void add_requirement(RuleTab ruletab, RuleId id, char* req) {
 

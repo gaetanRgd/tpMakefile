@@ -28,6 +28,8 @@ RuleTab ruletabcreate(int n_max) {
     return ruletab;
 }
 
+/* ATTENTION cette fonction ne free pas les regles
+ * Il faut les free avnat ! */
 void ruletabfree(RuleTab* ruletab) {
     free(ruletab -> tab);
 }
