@@ -27,8 +27,13 @@
 
 
 int main(int argc, char **argv){
+    printf("Lecture du fichier en cours ...\n");
     RuleTab e = lecture("Makefile");
+    printf("\nFin de la lecture du fichier\n");
+
     //Graphe g = creerGraphe(e);
+
+    printf("Execution des commandes :\n")
     if(argv[1]==NULL){
         make("main",e);
     }
