@@ -20,6 +20,6 @@ datastructure/rule_function.o: datastructure/rule_function.c datastructure/rule_
 	gcc $(CFLAGS) -c $< -o $@
 
 clean :
-	rm -f -r *.o
-	rm -f -r *.h.gch
+	find . -type f -name '*.o' -exec rm {} +
+	find . -type f -name '*.h.gch' -exec rm {} +
 .PHONY: clean
