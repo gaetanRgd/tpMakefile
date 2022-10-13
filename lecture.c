@@ -70,17 +70,18 @@ Ruletab lecture(char* fichier) {
 
             printf("premisses : ");
             while(token != NULL) { // Parcours de la liste des premisses
-                //ajouterP(getRegle(e),token);
                 //retirer le caractere \n de la derniere premisse ( le remplacer par \O)
-
                 remplacer(token,'\n','\0', strlen(token));
+
                 printf("%s, ", token);
+                addPremisse(r, token);
                 token=strtok(NULL, " ");
             }
         }
         else if(*(ligne_courante)=='\t' ){ // La ligne entiere donne tout de suite la commande (avec le caractere \n pour qu'elles'execure toute seule)
             //ajouterC(getRegle(e),ligne_courante);
             printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t
+            addCommande(r, ligne_courante+1);//On ne veut pas le caractere \t
         }
 
 
