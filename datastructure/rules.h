@@ -1,6 +1,9 @@
 #ifndef RULES_FILE
 #define RULES_FILE
 
+#include "ruletab.h"
+#include "chainedlist.h"
+
 typedef int RuleId;
 
 typedef struct {
