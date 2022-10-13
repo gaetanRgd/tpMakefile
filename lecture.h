@@ -3,6 +3,7 @@
 
 
 #include "datastructure/ruleset.h"
+#include "datastructure/ruletab.h"
 #include "datastructure/rules.h"
 
 Ruletab lecture(char* fichier);
