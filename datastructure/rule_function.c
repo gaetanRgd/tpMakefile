@@ -29,14 +29,14 @@ RuleId* str_to_id(RuleTab* ruletab, char* str) {
 }
 
 Rule* str_to_Rule(RuleTab* ruletab, char* str) {
-    return ruletabget(ruletab, str_to_id(ruletab, str));
+    return ruletabget(ruletab, *str_to_id(ruletab, str));
 }
 
 /* Créer une rêgle */
 Rule* create_rule(RuleTab* ruletab, char* name) {
     Rule* rule = malloc(sizeof(Rule));
     ruletabadd(ruletab, rule);
-    *rule -> name = name;
+    rule -> name = name;
     rule -> commands = createlist();
     rule -> requirement = createlist();
     return rule;
