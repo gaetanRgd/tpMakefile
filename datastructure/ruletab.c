@@ -16,6 +16,8 @@
  *   ////////                                                        |_|   |_|  \___/|_| |_| |_|\___/     |____|\___/____|____|
 */
 #include <stdlib.h>
+#include <stdio.h>
+
 #include "ruletab.h"
 
 #include "rule_struct.h"
