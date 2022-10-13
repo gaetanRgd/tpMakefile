@@ -20,7 +20,7 @@
 #include <stdio.h>
 
 #include "lecture.h"
-#include "ruleset.h"
+#include "datastructure/ruleset.h"
 #include "graphe.h"
 
 

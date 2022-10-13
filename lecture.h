@@ -2,8 +2,8 @@
 #define LECTURE_FILE
 
 
-#include "ruleset.h"
-#include "rules.h"
+#include "datastructure/ruleset.h"
+#include "datastructure/rules.h"
 
 Ruletab lecture(char* fichier);
 int testFinFichier(FILE* f);
