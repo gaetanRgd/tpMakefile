@@ -15,10 +15,11 @@
  *  /////((((////////        ^^^^                                    | |   | | | (_) | | | | | | (_) |     / /_| |_| / /_ / /_ 
  *   ////////                                                        |_|   |_|  \___/|_| |_| |_|\___/     |____|\___/____|____|
 */
+#include <stdlib.h>
+#include <stdio.h>
 
 #include "ruletab.h"
 
-#include "radixlist.c"
 #include "rule_struct.h"
 
 /* Créer un tableau des rêgles

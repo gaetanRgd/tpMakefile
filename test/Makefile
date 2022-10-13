@@ -23,4 +23,5 @@ d.o : d.c d.h
 
 clean :
 	rm -f *.o
+	rm -f *.h.gch
 .PHONY: clean
