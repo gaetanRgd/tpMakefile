@@ -41,12 +41,14 @@ void infinitesetfree(InfiniteRuleSet set) {
  * Complexité en O(1) */
 InfiniteRuleSet infinitesetadd(InfiniteRuleSet set, RuleId id) {
     set[id / 64] = setadd(set[id / 64], id % 64);
+    return set;
 }
 
 /* Suppression d'un entier 
  * Complexité en O(1) */
 InfiniteRuleSet infinitesetdel(InfiniteRuleSet set, RuleId id) {
     set[id / 64] = setdel(set[id / 64], id % 64);
+    return set;
 }
 
 /* Test d'appartenance à l'ensemble 
