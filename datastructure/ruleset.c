@@ -68,7 +68,7 @@ void iter(RuleSet set, void* func, RuleId id_start) {
 */
 
 
-/* Exemple d'utilisation des sets */
+/* Exemple d'utilisation des sets
 int main(void) {
     RuleSet set = setcreate();
     set = setadd(set, (RuleId) 3); // Ajout d'une rêgle
@@ -79,4 +79,4 @@ int main(void) {
     setprint(set);
     printf("%d\n", setin(set, (RuleId) 2)); // Test d'égalité
     return 0;
-}
+}*/
