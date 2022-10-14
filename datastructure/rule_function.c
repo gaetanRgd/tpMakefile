@@ -25,7 +25,7 @@
 #include "chainedlist.h"
 
 /* STR to ID == Arbre Radix*/
-Rule* str_to_Rule(RuleTab* ruletab, char* str) {
+Rule* str_to_rule(RuleTab* ruletab, char* str) {
     for (RuleId i = 0; i < ruletab -> n_max; i++) {
         if (strcmp(ruletab -> tab[i] -> name, str)) {
             return ruletab -> tab[i];

@@ -70,7 +70,7 @@
  */
 void make(char* nom_cible, RuleTab e){
     int* id_cible;
-    id_cible=str_to_id(&e, nom_cible);
+    id_cible=str_to_rule(&e, nom_cible);
 
     printf("Construction de %s\n", nom_cible);
 
