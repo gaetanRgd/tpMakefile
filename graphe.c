@@ -18,7 +18,7 @@
 
 #include "graphe.h"
 
-Graphe creerGraphe(Ruletab e){
+/*Graphe creerGraphe(RuleTab e){
     int t[e.n_max][e.n_max]={0};
     Rule* r;
     char** pre;
@@ -30,3 +30,4 @@ Graphe creerGraphe(Ruletab e){
     }
 
 }
+*/

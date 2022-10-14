@@ -11,6 +11,6 @@ struct Graphe{
     //TabG* fils;
 };
 
-//Graphe creerGraphe(Ruletab e);
+Graphe creerGraphe(Ruletab e);
 
 #endif

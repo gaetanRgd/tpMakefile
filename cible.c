@@ -20,13 +20,17 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
+#include<string.h>
+
+#include "cible.h"
+
 
 /* Version naive du make
  * Prend en entree le nom d'une regle(type char*) et l'ensemble des regles(type Ensemble)
  * Construit la regle passee en entree en executant les commades necessaires a la creation
  * Ne renvoie rien
  */
-void make_naive(char* nom_cible, RuleTab e){
+/*void make_naive(char* nom_cible, RuleTab e){
     int id_cible=-1;
     id_cible=parcourir(e, nom_cible);
 
@@ -57,7 +61,7 @@ void make_naive(char* nom_cible, RuleTab e){
             c=c->suivant;
         }
     }
-}
+}*/
 
 /* Version amelioree du make
  * Prend en entree le nom d'une regle(type char*) et l'ensemble des regles(type Ensemble)
@@ -66,7 +70,7 @@ void make_naive(char* nom_cible, RuleTab e){
  */
 void make(char* nom_cible, RuleTab e){
     int* id_cible;
-    id_cible=strtoid(e, nom_cible);
+    id_cible=str_to_id(&e, nom_cible);
 
     printf("Construction de %s\n", nom_cible);
 
@@ -75,7 +79,9 @@ void make(char* nom_cible, RuleTab e){
         char* nom = nom_cible;// je cree une copie pour ne pas detruire la chaine nom_cible avec le strtok
         extension=strtok(nom, ".");
         extension=strtok(NULL, ".");
-        if(extension == "o" ) {
+
+        char* oo="o";
+        if(extension == oo ) {
             exit(1);// c'est un .o donc il devrait etre dans la liste'
         }
         else{
@@ -84,11 +90,11 @@ void make(char* nom_cible, RuleTab e){
     }
     else{ // Construire recursivement la cible
         // Contruction de chacune des premisses
-        Rules r = ruletabget(&e,*id_cible);
-        List* p = get_requirement(r);
+        Rule* r = ruletabget(&e,*id_cible);
+        List* p = get_requirement_list(r);
         int a_change=0; // 0 si aucun des fichiers n'a change et 1 sinon
-        while(*p != NULL) {
-            printf("premisse : %s\n", p->nom);
+        while(p != NULL) {
+            printf("premisse : %s\n", p->element);
             if(getTime(nom_cible)>getTime(p->element)){
                 make(p->element, e);
                 a_change=1;
@@ -97,10 +103,10 @@ void make(char* nom_cible, RuleTab e){
         }
         // Execution des regles
         if(a_change){// On ne reconstruit que si une premisse au moins a change
-            List* c = get_requirement(r);
+            List* c = get_requirement_list(r);
             printf("Execution des commandes de %s :\n", nom_cible);
-            while(*c != NULL){
-                printf("commande : %s\n", c->nom_cible);
+            while(c != NULL){
+                printf("commande : %s\n", c->element);
                 system(c->element);
                 c=c->next;
             }

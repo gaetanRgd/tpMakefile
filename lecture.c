@@ -24,7 +24,7 @@
  * Cree l'ensemble contenant les regles du fichier
  * Renvoie l'ensemble des regles lues dans le fichier(type Ensemble)
  */
-Ruletab lecture(char* fichier) {
+RuleTab lecture(char* fichier) {
     int taille=nbRegles(fichier);
     printf("%d", taille);
 
@@ -38,9 +38,8 @@ Ruletab lecture(char* fichier) {
     size_t MAX_LIGNE=100;
 
 
-    Ruletab e=ruletabcreate(taille);
+    RuleTab e=ruletabcreate(taille);
     Rule* r;
-    int id_rule;
     char*nom;
 
     while(!testFinFichier(f)) {
@@ -55,7 +54,6 @@ Ruletab lecture(char* fichier) {
 
             nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et premisses
             r=create_rule(&e,nom);
-            id_rule=r->id; //get l'id
             printf("Nom : %s\n", nom);
 
             ligne_courante=strtok(NULL, ":");//On regrde ce qu'il y a apres les :
@@ -67,12 +65,12 @@ Ruletab lecture(char* fichier) {
                 remplacer(token,'\n','\0', strlen(token));
 
                 printf("%s, ", token);
-                add_requirement(e,id, token);
+                add_requirement(r, token);
                 token=strtok(NULL, " ");
             }
         }
         else if(*(ligne_courante)=='\t' ){ // La ligne entiere donne tout de suite la commande (avec le caractere \n pour qu'elles'execure toute seule)
-            add_command(e,id, ligne_courante+1);//On ne veut pas le caractere \t
+            add_command(r, ligne_courante+1);//On ne veut pas le caractere \t
             printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t
         }
 
