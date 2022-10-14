@@ -56,8 +56,8 @@ RuleTab lecture(char* fichier) {
             r=create_rule(&e,nom);
             printf("Nom : %s\n", nom);
 
-            ligne_courante=strtok(NULL, ":");//On regrde ce qu'il y a apres les :
-            token=strtok(ligne_courante, " ");
+            nom = strtok(NULL, ":");//On regrde ce qu'il y a apres les :
+            token=strtok(nom, " ");
 
             printf("premisses : ");
             while(token != NULL) { // Parcours de la liste des premisses
@@ -78,8 +78,8 @@ RuleTab lecture(char* fichier) {
 
     }
     printf("\n********fin de la regle********\n\n");
+    free(ligne_courante);
     fclose(f);
-
     return e;
 }
 

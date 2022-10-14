@@ -40,6 +40,7 @@ Rule* str_to_rule(RuleTab* ruletab, char* str) {
 Rule* create_rule(RuleTab* ruletab, char* name) {
     Rule* rule = malloc(sizeof(Rule));
     ruletabadd(ruletab, rule);
+    rule -> name = name;
     rule -> name = malloc(strlen(name) + 1);
     strcpy(rule -> name, name);
     rule -> commands = createlist();
