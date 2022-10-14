@@ -15,7 +15,7 @@ typedef int RuleId;
 typedef struct {
     RuleId id;
     char* name;
-    ListHead requirement; // LISTE CHAINEE EN FAIT 
+    ListHead requirement;
     ListHead commands;
 } Rule;
 
