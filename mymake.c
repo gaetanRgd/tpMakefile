@@ -28,7 +28,7 @@
 
 int main(int argc, char **argv){
     printf("Lecture du fichier en cours ... :/\n");
-    RuleTab e = lecture("test/makefile");
+    RuleTab e = lecture("makefile");
     printf("\nFin de la lecture du fichier\n");
 
     //Graphe g = creerGraphe(e);
