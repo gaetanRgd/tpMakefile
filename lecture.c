@@ -45,7 +45,7 @@ RuleTab lecture(char* fichier) {
     while(!testFinFichier(f)) {
 
         getline(&ligne_courante, &MAX_LIGNE, f);
-
+        
 
         if(*(ligne_courante)!='\t' && strlen(ligne_courante)>1) { // Si la ligne n'est pas vide et qu'elle n'est pas une commande, c'est un debut de nouvelle regle
 
@@ -73,6 +73,7 @@ RuleTab lecture(char* fichier) {
             add_command(r, ligne_courante+1);//On ne veut pas le caractere \t
             printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t
         }
+        
 
 
     }

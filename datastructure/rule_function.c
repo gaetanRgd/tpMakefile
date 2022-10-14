@@ -28,6 +28,7 @@
 /* STR to ID == Arbre Radix*/
 Rule* str_to_rule(RuleTab* ruletab, char* str) {
     for (RuleId i = 0; i < ruletab -> n_max; i++) {
+        printf("{%s == %s}\n", ruletab -> tab[i] -> name, str);
         if (!strcmp(ruletab -> tab[i] -> name, str)) {
             return ruletab -> tab[i];
         }
@@ -39,7 +40,8 @@ Rule* str_to_rule(RuleTab* ruletab, char* str) {
 Rule* create_rule(RuleTab* ruletab, char* name) {
     Rule* rule = malloc(sizeof(Rule));
     ruletabadd(ruletab, rule);
-    rule -> name = name;
+    rule -> name = malloc(strlen(name) + 1);
+    strcpy(rule -> name, name);
     rule -> commands = createlist();
     rule -> requirement = createlist();
     return rule;
@@ -48,6 +50,7 @@ Rule* create_rule(RuleTab* ruletab, char* name) {
 void free_rule(Rule* rule) {
     freelinkedlist(&(rule -> commands));
     freelinkedlist(&(rule -> requirement));
+    free(rule -> name);
     free(rule);
 }
 
