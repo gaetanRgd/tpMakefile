@@ -6,7 +6,7 @@
 #include "rule_struct.h"
 
 
-Rule* str_to_Rule(RuleTab* ruletab, char* str);
+Rule* str_to_rule(RuleTab* ruletab, char* str);
 
 Rule* create_rule(RuleTab* ruletab, char* name);
 

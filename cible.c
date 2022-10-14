@@ -69,12 +69,11 @@
  * Ne renvoie rien
  */
 void make(char* nom_cible, RuleTab e){
-    int* id_cible;
-    id_cible=str_to_rule(&e, nom_cible);
+    Rule* reg_cible = str_to_rule(&e, nom_cible);
 
     printf("Construction de %s\n", nom_cible);
 
-    if (id_cible==NULL){
+    if (reg_cible==NULL){
         char* extension;
         char* nom = nom_cible;// je cree une copie pour ne pas detruire la chaine nom_cible avec le strtok
         extension=strtok(nom, ".");
@@ -90,8 +89,7 @@ void make(char* nom_cible, RuleTab e){
     }
     else{ // Construire recursivement la cible
         // Contruction de chacune des premisses
-        Rule* r = ruletabget(&e,*id_cible);
-        List* p = get_requirement_list(r);
+        List* p = get_requirement_list(reg_cible);
         int a_change=0; // 0 si aucun des fichiers n'a change et 1 sinon
         while(p != NULL) {
             printf("premisse : %s\n", p->element);
@@ -103,7 +101,7 @@ void make(char* nom_cible, RuleTab e){
         }
         // Execution des regles
         if(a_change){// On ne reconstruit que si une premisse au moins a change
-            List* c = get_requirement_list(r);
+            List* c = get_requirement_list(reg_cible);
             printf("Execution des commandes de %s :\n", nom_cible);
             while(c != NULL){
                 printf("commande : %s\n", c->element);
