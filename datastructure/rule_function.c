@@ -32,6 +32,7 @@
 /// @return Un pointeur vers la regle associée
 Rule* str_to_rule(RuleTab* ruletab, char* name) {
     for (RuleId i = 0; i < ruletab -> n_max; i++) {
+        printf("{%s == %s}\n", ruletab -> tab[i] -> name, name);
         if (!strcmp(ruletab -> tab[i] -> name, name)) {
             return ruletab -> tab[i];
         }

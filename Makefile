@@ -1,5 +1,5 @@
 mymake: mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o
-	gcc -time -g -lm mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o -o mymake
+	gcc -time -g -lm mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o -o mymake_bymymake
 
 datastructure/safemalloc.o: datastructure/safemalloc.c
 	gcc -Wall -Wextra -Werror -Wno-unused-parameter -c datastructure/safemalloc.c -o datastructure/safemalloc.o

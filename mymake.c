@@ -34,7 +34,7 @@ int main(int argc, char **argv){
 
     printf("Execution des commandes :\n");
     if(argv[1]==NULL){
-        make("main",tab);
+        make("mymake",tab);
     }
     else {
         make(argv[1],tab);
