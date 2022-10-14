@@ -75,11 +75,9 @@ char* pop(ListHead* list) {
 void print_list(ListHead list) {
     List* node = list.head;
     printf("[");
-    int n = 0;
-    while (node != NULL && n < 10) {
+    while (node != NULL) {
         printf("%s, ", node -> element);
         node = node -> next;
-        n ++;
     }
     printf("]");
 }
