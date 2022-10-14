@@ -23,15 +23,15 @@ typedef int Bool;
 /* Complexité en espace en O(n)
  * n étant le nombre de chaînes recconues par l'arbre radix */
 typedef struct {
-    RadixChainedList* list;
+    void* list;
     Bool* id;
     char* endkey;
 } Radix;
 
 /* Complexité en espace en O(1)
  * Car maximum 255 éléments dans la liste, un par caractères */
-typedef struct {
-    RadixChainedList* next;
+typedef struct RadixChainedList {
+    struct RadixChainedList* next;
     Radix* tree;
 } RadixChainedList;
 
@@ -55,7 +55,7 @@ Radix radixadd(Radix radix, unsigned char* key, unsigned int value) {
 Radix radixget(Radix* radix, unsigned char* key) {
     RadixChainedList* list = radix->list;
     while ((list != NULL)) {
-        if (strcomp(list -> tree -> endkey, key)) {
+        if (!strcomp(list -> tree -> endkey, key)) {
             radix = list -> tree;
             list = radix -> list;
         }
