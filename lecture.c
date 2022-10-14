@@ -30,7 +30,10 @@ RuleTab lecture(char* fichier) {
     FILE* f=NULL;
     f=fopen(fichier,"r");
     if(f==NULL) {
-        exit(1);
+        f=fopen("makefile","r"); // On gere ici le cas ou le nom du fichier Makefile est ecrit entierement en minuscules (on suppose que la fonction lecture recoit toujours "Makefile" et pas un chemin vers Makefile/makefile)
+        if(f==NULL) {
+            exit(1);
+        }
     }
     char* ligne_courante = NULL;
     char* token;

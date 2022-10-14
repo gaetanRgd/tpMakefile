@@ -28,7 +28,7 @@
 /// @brief version naive du make qui reconstruit toujours les prerequis
 /// @param prend le nom de la premiere regle a construire et la table des regles du fichier
 /// @return void (execute des commandes)
-void make(char* nom_cible, RuleTab e){
+void make_naive(char* nom_cible, RuleTab e){
     Rule* reg_cible = str_to_rule(&e, nom_cible);
 
     printf("Construction de %s\n", nom_cible);
@@ -52,7 +52,7 @@ void make(char* nom_cible, RuleTab e){
         List* p = get_requirement_list(reg_cible);
         while(p != NULL) {
             printf("premisse : %s\n", p->element);
-            if(getTime(cible_nom)>getTime(p->element)){
+            if(getTime(nom_cible)>getTime(p->element)){
                 printf("%s", p->element);
                 make(p->element, e);
             }
@@ -101,7 +101,7 @@ void make(char* nom_cible, RuleTab e){
         int a_change=0; // 0 si aucun des fichiers n'a change et 1 sinon
         while(p != NULL) {
             printf("premisse : %s\n", p->element);
-            if(getTime(cible_nom)>getTime(p->element)){
+            if(getTime(nom_cible)>getTime(p->element)){
                 printf("%s", p->element);
                 make(p->element, e);
                 a_change=1;
