@@ -99,9 +99,14 @@ int testFinFichier(FILE* f) { // pour savoir si on peut continuer les getline
 /* Remplace le caractere c2 par c3 dans la chaine de caracteres s1
  * Prend en entree s1(type char*) c2(type char) et c3(type char)
  */
+/// @brief 
+/// @param s1 
+/// @param c2 
+/// @param c3 
+/// @param n 
 void remplacer(char* s1, char c2, char c3, int n) {
     int i=0;
-    while(i<10) {
+    while(i<n) {
         if(*(s1+i) == c2) {
             *(s1+i)=c3;
         }
