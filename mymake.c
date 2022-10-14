@@ -25,10 +25,13 @@
 #include "graphe.h"
 #include "cible.h"
 
-
+/// @brief fonction main
+/// @param prend potentiellement en argument le nom de la premiere regle a construire
+/// @return return 0
+/// @exception Il faudra free ce maillon avec freelistnode(node)
 int main(int argc, char **argv){
     printf("Lecture du fichier en cours ... :/\n");
-    RuleTab e = lecture("makefile");
+    RuleTab e = lecture("test/makefile");
     printf("\nFin de la lecture du fichier\n");
 
     //Graphe g = creerGraphe(e);
