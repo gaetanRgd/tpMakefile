@@ -22,7 +22,7 @@
 #include "chainedlist.h"
 
 List* createlistnode(char* element) {
-    char* malocelement = malloc(sizeof(*element));
+    char* malocelement = malloc(strlen(element) + 1);
     strcpy(malocelement, element);
     List* node = malloc(sizeof(List));
     *node = (List) {NULL, malocelement};

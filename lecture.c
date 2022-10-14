@@ -26,21 +26,21 @@
  */
 RuleTab lecture(char* fichier) {
     int taille=nbRegles(fichier);
-    printf("%d", taille);
+    printf("\n\n%d\n\n", taille);
 
     FILE* f=NULL;
     f=fopen(fichier,"r");
     if(f==NULL) {
         exit(1);
     }
-    char* ligne_courante;
+    char* ligne_courante = NULL;
     char* token;
     size_t MAX_LIGNE=100;
 
 
     RuleTab e=ruletabcreate(taille);
     Rule* r;
-    char*nom;
+    char* nom;
 
     while(!testFinFichier(f)) {
 
@@ -129,7 +129,6 @@ int nbRegles(char* fichier){
             taille++;
         }
     }
-    printf("\n\nEOF\n\n");
     free(ligne_courante);
     fclose(f);
     return taille;
