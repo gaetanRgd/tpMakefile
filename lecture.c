@@ -20,10 +20,9 @@
 #include "lecture.h"
 
 
-/* Lit le fichier donne en entree
- * Cree l'ensemble contenant les regles du fichier
- * Renvoie l'ensemble des regles lues dans le fichier(type Ensemble)
- */
+/// @brief fonction qui lit un fichier  afin de construire la liste des regles du fichier
+/// @param prend le nom du fichier
+/// @return la table des regles inscrites dans le fichier$
 RuleTab lecture(char* fichier) {
     int taille=nbRegles(fichier);
     printf("\n\n%d\n\n", taille);
@@ -42,7 +41,7 @@ RuleTab lecture(char* fichier) {
     Rule* r;
     char* nom;
 
-    while(!testFinFichier(f)) {
+    while(!feof(f)) {
 
         getline(&ligne_courante, &MAX_LIGNE, f);
         
@@ -83,42 +82,25 @@ RuleTab lecture(char* fichier) {
     return e;
 }
 
-/* Teste si la position actuelle dans le fichier correspond a EOF
- * Prend en entree le nom du fichier(type char*) ou on fait le test
- * Renvoie 1 si on est a la fin du fichier et 0 sinon
- */
-int testFinFichier(FILE* f) { // pour savoir si on peut continuer les getline
-    if (fgetc(f)==EOF) {
-        return 1;
-    }
-    else {
-        fseek(f, -1, SEEK_CUR);
-        return 0;
-    }
-}
 
-/* Remplace le caractere c2 par c3 dans la chaine de caracteres s1
- * Prend en entree s1(type char*) c2(type char) et c3(type char)
- */
-/// @brief 
-/// @param s1 
-/// @param c2 
-/// @param c3 
-/// @param n 
-void remplacer(char* s1, char c2, char c3, int n) {
+/// @brief remplace un caractere c_av par un caractere c_ap dans le string str
+/// @param str chaine de caracteres a modifier
+/// @param c_av le caractere present avant la modification
+/// @param c_ap le caractere present apres la modification
+/// @param n la taille de la chaine str
+void remplacer(char* str, char c_av, char c_ap, int n) {
     int i=0;
     while(i<n) {
-        if(*(s1+i) == c2) {
-            *(s1+i)=c3;
+        if(*(str+i) == c_av) {
+            *(str+i)=c_ap;
         }
         i++;
     }
 }
 
-/*Permet de connaitre le nombre de regles dans le fichier avant de creer toutes les structures
- * Prend en entree le nom du fichier ou sont stockees les regles
- * Renvoie le nombre de regles dans le fichier
- */
+/// @brief fonction qui parcourt un fichier pour connaitre le nombre de regles a l'interieur
+/// @param prend le nom du fichier a etudier
+/// @return le nombre de regles dans le fichier
 int nbRegles(char* fichier){
     FILE* f;
     size_t MAX_LIGNE=1000;
