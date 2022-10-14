@@ -29,4 +29,6 @@ void add_command_by_id(RuleTab* ruletab, RuleId id, char* cmd);
 List* get_command_list(Rule* rule);
 
 List* get_command_list_by_id(RuleTab* ruletab, RuleId id);
+
+void print_rule(Rule* rule);
 #endif

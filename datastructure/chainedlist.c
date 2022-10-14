@@ -18,6 +18,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "chainedlist.h"
 
@@ -59,4 +60,16 @@ char* pop(ListHead* list) {
     char* element = node -> element;
     freelistnode(node);
     return element;
+}
+
+void print_list(ListHead list) {
+    List* node = list.head;
+    printf("[");
+    int n = 0;
+    while (node != NULL && n < 10) {
+        printf("%s, ", node -> element);
+        node = node -> next;
+        n ++;
+    }
+    printf("]");
 }

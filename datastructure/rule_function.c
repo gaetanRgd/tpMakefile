@@ -18,6 +18,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "rule_struct.h"
 
@@ -27,7 +28,7 @@
 /* STR to ID == Arbre Radix*/
 Rule* str_to_rule(RuleTab* ruletab, char* str) {
     for (RuleId i = 0; i < ruletab -> n_max; i++) {
-        if (strcmp(ruletab -> tab[i] -> name, str)) {
+        if (!strcmp(ruletab -> tab[i] -> name, str)) {
             return ruletab -> tab[i];
         }
     }
@@ -86,6 +87,13 @@ List* get_command_list_by_id(RuleTab* ruletab, RuleId id) {
     return get_command_list(ruletabget(ruletab, id));
 }
 
+void print_rule(Rule* rule) {
+    printf("\n{\nid=%d\nname=%s\ndependencies=", rule -> id, rule -> name);
+    print_list(rule -> requirement);
+    printf("\ncommands=");
+    print_list(rule -> commands);
+    printf("\n}\n");
+}
 /* y Ajouter des commandes */
 
 

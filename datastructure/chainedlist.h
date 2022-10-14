@@ -24,4 +24,6 @@ int is_empty(ListHead* list);
 void append(ListHead* list, char* element);
 
 char* pop(ListHead* list); 
+
+void print_list(ListHead list);
 #endif
