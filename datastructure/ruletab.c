@@ -56,7 +56,7 @@ Rule* ruletabadd(RuleTab* ruletab, Rule* rule) {
         ruletab -> n++;
         return rule;
     } else {
-        printf("Un élément n'a pas pu être ajouté au tableau car ce dernier est plein :/ !");
+        perror("Un élément n'a pas pu être ajouté au tableau car ce dernier est plein :/ !");
         return NULL;
     }
 }
