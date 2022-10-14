@@ -24,7 +24,8 @@
 
 
 /// @brief Crée un maillon de la liste encapsulant une chaîne de caractère
-/// @param element l'élément à encapsuler
+///        Complexité en O(k)
+/// @param element l'élément à encapsuler de taille k
 /// @return Le maillon de la liste nouvelement formé
 /// @exception Il faudra free ce maillon avec freelistnode(node)
 List* createlistnode(char* element) {
@@ -36,6 +37,7 @@ List* createlistnode(char* element) {
 
 
 /// @brief Libère l'espace mémoire occupée par le maillon 
+///        Complexité en O(1)
 /// @param node le maillon
 void freelistnode(List* node) {
     free(node -> element);
@@ -44,6 +46,7 @@ void freelistnode(List* node) {
 
 
 /// @brief Libère l'espace occupé par la liste chaînée
+///        Complexité linéaire en la taille de la liste
 /// @param listhead la tête de la liste
 void freelinkedlist(ListHead* listhead) {
     List* node = listhead -> head;
@@ -57,6 +60,7 @@ void freelinkedlist(ListHead* listhead) {
 
 
 /// @brief Crée une liste chaînée permettant l'ajout en fin de chaîne
+///        Complexité en O(1)
 /// @return La liste chaînée vide
 /// @exception Ne pas oublier de free cette liste avec freelinkedlist(listhead)
 ListHead createlist(void) {
@@ -65,6 +69,7 @@ ListHead createlist(void) {
 
 
 /// @brief Vérfie si une liste chainée est vide
+///        Complexité en O(1)
 /// @param listhead La liste étudiée
 /// @return Un entier valant vrai si la liste est vide et 0 sinon
 int is_empty(ListHead* listhead) {
@@ -72,6 +77,7 @@ int is_empty(ListHead* listhead) {
 }
 
 /// @brief Ajoute une chaîne en queue de liste (enfile)
+///        Complexité en O(1)
 /// @param listhead la tête de la liste
 /// @param element l'élément à ajouter
 void append(ListHead* listhead, char* element) {
@@ -87,6 +93,7 @@ void append(ListHead* listhead, char* element) {
 
 
 /// @brief Enlène un élément en tête de liste (défile)
+///        Complexité en O(1)
 /// @param listhead la tête de la liste
 /// @return L'élément retiré de la liste
 char* pop(ListHead* listhead) {
@@ -99,6 +106,7 @@ char* pop(ListHead* listhead) {
 
 
 /// @brief Affiche la liste
+///        Complexité linéaire en la taille de la liste
 /// @param listhead la tête de la liste
 void print_list(ListHead listhead) {
     List* node = listhead.head;
