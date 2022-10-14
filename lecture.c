@@ -24,8 +24,7 @@
 /// @param prend le nom du fichier
 /// @return la table des regles inscrites dans le fichier$
 RuleTab lecture(char* fichier) {
-    int taille=nbRegles(fichier);
-    printf("\n\n%d\n\n", taille);
+    int taille=nbRegles(fichier);//nombre de regles dans le fichier
 
     FILE* f=NULL;
     f=fopen(fichier,"r");
@@ -35,16 +34,16 @@ RuleTab lecture(char* fichier) {
             exit(1);
         }
     }
-    char* ligne_courante = NULL;
+    char* ligne_courante = NULL; //Stocke la ligne du fichier qu'on est en train de lire
     char* token;
-    size_t MAX_LIGNE=100;
+    size_t MAX_LIGNE=1000; // Taille maximale de la ligne du fichier
 
 
-    RuleTab e=ruletabcreate(taille);
+    RuleTab tab=ruletabcreate(taille);
     Rule* r;
     char* nom;
 
-    while(!feof(f)) {
+    while(!feof(f)) {//On lit tout le fichier
 
         getline(&ligne_courante, &MAX_LIGNE, f);
         
@@ -54,16 +53,16 @@ RuleTab lecture(char* fichier) {
             printf("********fin de la regle********\n\n");
             printf("********nouvelle regle********\n");
 
-            nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et premisses
-            r=create_rule(&e,nom);
+            nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et prerequis
+            r=create_rule(&tab,nom);
             printf("Nom : %s\n", nom);
 
             nom = strtok(NULL, ":");//On regrde ce qu'il y a apres les :
-            token=strtok(nom, " ");
+            token = strtok(nom, " ");
 
-            printf("premisses : ");
-            while(token != NULL) { // Parcours de la liste des premisses
-                //retirer le caractere \n de la derniere premisse ( le remplacer par \O)
+            printf("prerequis : ");
+            while(token != NULL) { // Parcours de la liste des prerequis
+                //retirer le caractere \n de la derniere prerequis ( le remplacer par \O)
                 remplacer(token,'\n','\0', strlen(token));
 
                 printf("%s, ", token);
@@ -71,18 +70,18 @@ RuleTab lecture(char* fichier) {
                 token=strtok(NULL, " ");
             }
         }
-        else if(*(ligne_courante)=='\t' ){ // La ligne entiere donne tout de suite la commande (avec le caractere \n pour qu'elles'execure toute seule)
-            add_command(r, ligne_courante+1);//On ne veut pas le caractere \t
-            printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t
+        else if(*(ligne_courante)=='\t' ){ // La ligne entiere donne tout de suite la commande (avec le caractere \n pour qu'elles executent toutes seules)
+            add_command(r, ligne_courante+1);//On ne veut pas le caractere \t donc +1
+            printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t donc +1
         }
         
 
 
     }
     printf("\n********fin de la regle********\n\n");
-    free(ligne_courante);
+    free(ligne_courante); // On libere la memoire allouee dans le getline
     fclose(f);
-    return e;
+    return tab;
 }
 
 
@@ -114,13 +113,13 @@ int nbRegles(char* fichier){
     }
     int taille=0;
     char* ligne_courante = NULL;
-    while(!feof(f)) {
+    while(!feof(f)) {//Parcours de tout le fichier
         getline(&ligne_courante, &MAX_LIGNE, f);
         if(*(ligne_courante)!='\t' && strlen(ligne_courante)>1) {
             taille++;
         }
     }
-    free(ligne_courante);
+    free(ligne_courante);// On libere la memoire allouee dans le getline
     fclose(f);
     return taille;
 }
