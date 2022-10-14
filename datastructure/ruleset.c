@@ -22,61 +22,47 @@
 #include "ruleset.h"
 #include "rule_struct.h"
 
-/* Créer un set vide strockant des entiers de 0 à 64
- * Complexité en O(1) */  
+/// @brief Créer un ensemble vide pouvant strocker des entiers de [[0, 63]]. Complexité en O(1)
+/// @return Retourne l'ensemble vide.
 RuleSet setcreate(void) {
-    return (RuleSet) 0; 
+    return 0; 
 }
 
-/* Ajouter une rêgle au Set 
- * Complexité en O(1) */
+/// @brief Ajoute un élément à l'ensemble. Complexité en O(1).
+/// @param set l'ensemble condidéré
+/// @param id l'élément à ajouter à l'ensemble
+/// @return L'ensemble complété
 RuleSet setadd(RuleSet set, RuleId id) {
-    return (RuleSet) {set | (RuleSet) pow(2, id)};
+    return set | (RuleSet) pow(2, id);
 }
 
-/* Supprimer une rêgle au set 
- * Complexité en O(1) */
+
+/// @brief Supprime un entier à l'ensemble. Complexité en O(1).
+/// @param set l'ensemble considéré
+/// @param id l'élément à retirer
+/// @return L'ensemble tronqué
 RuleSet setdel(RuleSet set, RuleId id) {
-    return (RuleSet) {set ^ (RuleSet) pow(2, id)};
+    return set ^ (RuleSet) pow(2, id);
 }
 
-/* Vérification de l'appartenance 
- * Compelxité en O(1) */
+/// @brief Vérifie l'appartenance d'un élément à l'ensemble. Compelxité en O(1).
+/// @param set L'ensemble considéré
+/// @param id L'élément considéré
+/// @return 1 si l'élément est dans l'ensemble 0 sinon.
 int setin(RuleSet set, RuleId id) {
     return  0 != (set & (RuleSet) pow(2, id));
 }
 
-/* Egalite de sets 
- * Complexité en O(1) */
+/// @brief Vérifie l'égalité de deux ensembles. Complexité en O(1).
+/// @param set_a le premier ensemble
+/// @param set_b le second ensemble
+/// @return 1 si les ensembles sont égaux et 0 sinon
 int seteq(RuleSet set_a, RuleSet set_b) {
     return set_a == set_b;
 }
 
-/* Afficher un set sur la cmd 
- * Complexité en O(1) */
+/// @brief Affiche un ensemble. Complexité en O(1).
+/// @param set L'ensemble considéré
 void setprint(RuleSet set) {
     printf("%lld\n", set);
 }
-
-/*
-void iter(RuleSet set, void* func, RuleId id_start) {
-    for (RuleSet i = set; i > 0; i<<0) {
-        func(i % 2, id_start);
-        id_start ++;
-    }
-}
-*/
-
-
-/* Exemple d'utilisation des sets
-int main(void) {
-    RuleSet set = setcreate();
-    set = setadd(set, (RuleId) 3); // Ajout d'une rêgle
-    setprint(set);
-    set = setadd(set, (RuleId) 2);
-    setprint(set);
-    set = setadd(set, (RuleId) 0);
-    setprint(set);
-    printf("%d\n", setin(set, (RuleId) 2)); // Test d'égalité
-    return 0;
-}*/
