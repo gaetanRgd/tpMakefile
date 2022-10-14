@@ -31,7 +31,7 @@
 /// @exception Il faudra free ce maillon avec freelistnode(node)
 int main(int argc, char **argv){
     printf("Lecture du fichier en cours ... :/\n");
-    RuleTab e = lecture("test/makefile");
+    RuleTab e = lecture("Makefile");
     printf("\nFin de la lecture du fichier\n");
 
     //Graphe g = creerGraphe(e);
