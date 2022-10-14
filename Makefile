@@ -8,19 +8,19 @@ mymake: mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastruc
 datastructure/safemalloc.o: datastructure/safemalloc.c
 	gcc $(CFLAGS) -c $< -o $@
 
-datastructure/chainedlist.o: datastructure/chainedlist.c datastructure/chainedlist.h
+datastructure/chainedlist.o: datastructure/chainedlist.c datastructure/chainedlist.h datastructure/safemalloc.h
 	gcc $(CFLAGS) -c $< -o $@
 
 datastructure/ruleset.o: datastructure/ruleset.c datastructure/ruleset.h datastructure/rule_struct.h
 	gcc $(CFLAGS) -c $< -o $@
 
-datastructure/infiniteruleset.o: datastructure/infiniteruleset.c datastructure/infiniteruleset.h datastructure/ruleset.h datastructure/rule_struct.h
+datastructure/infiniteruleset.o: datastructure/infiniteruleset.c datastructure/infiniteruleset.h datastructure/safemalloc.h datastructure/ruleset.h datastructure/rule_struct.h
 	gcc $(CFLAGS) -c $< -o $@
 
-datastructure/ruletab.o: datastructure/ruletab.c datastructure/ruletab.h datastructure/rule_struct.h
+datastructure/ruletab.o: datastructure/ruletab.c datastructure/ruletab.h datastructure/rule_struct.h datastructure/safemalloc.h
 	gcc $(CFLAGS) -c $< -o $@
 
-datastructure/rule_function.o: datastructure/rule_function.c datastructure/rule_struct.h datastructure/ruletab.h datastructure/chainedlist.h
+datastructure/rule_function.o: datastructure/rule_function.c datastructure/rule_struct.h datastructure/safemalloc.h datastructure/ruletab.h datastructure/chainedlist.h
 	gcc $(CFLAGS) -c $< -o $@
 
 mymake.o: mymake.c lecture.h datastructure/ruleset.h datastructure/ruletab.h graphe.h cible.h

@@ -21,6 +21,7 @@
 
 #include "ruleset.h"
 #include "rule_struct.h"
+#include "safemalloc.h"
 
 static int SIZE = sizeof(RuleSet) * 8;
 
@@ -32,7 +33,7 @@ static int SIZE = sizeof(RuleSet) * 8;
 /// @return Un tableau représentant le grand ensemble 
 /// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
 InfiniteRuleSet infinitesetcreate(int n_max) {
-    return malloc(n_max / SIZE * sizeof(RuleSet)); // TODO set à 0 les entiers pointés
+    return safe_malloc(n_max / SIZE * sizeof(RuleSet)); // TODO set à 0 les entiers pointés
 }
 
 /// @brief Supprime le grand ensemble en libérant l'espace mémoire associé. Complexité en O(1) 

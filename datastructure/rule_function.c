@@ -22,6 +22,7 @@
 
 #include "rule_struct.h"
 
+#include "safemalloc.h"
 #include "ruletab.h"
 #include "chainedlist.h"
 
@@ -45,9 +46,9 @@ Rule* str_to_rule(RuleTab* ruletab, char* name) {
 /// @return Un pointeur vers la regle
 /// @exception ATTENTION ne pas oublier de libérer l'espace mémoire avec free_rule(rule)
 Rule* create_rule(RuleTab* ruletab, char* name) {
-    Rule* rule = malloc(sizeof(Rule));
+    Rule* rule = safe_malloc(sizeof(Rule));
     ruletabadd(ruletab, rule);
-    rule -> name = malloc(strlen(name) + 1);
+    rule -> name = safe_malloc(strlen(name) + 1);
     strcpy(rule -> name, name);
     rule -> commands = createlist();
     rule -> requirement = createlist();

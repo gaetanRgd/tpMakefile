@@ -21,6 +21,7 @@
 
 #include "ruletab.h"
 
+#include "safemalloc.h"
 #include "rule_function.h"
 #include "rule_struct.h"
 
@@ -29,7 +30,7 @@
 /// @return Le tableau nouvelement crée
 /// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec ruletabfree(ruletab)
 RuleTab ruletabcreate(int n_max) {
-    RuleTab ruletab = {malloc(n_max * sizeof(Rule *)), 0, n_max};
+    RuleTab ruletab = {safe_malloc(n_max * sizeof(Rule *)), 0, n_max};
     return ruletab;
 }
 
@@ -66,7 +67,7 @@ Rule* ruletabadd(RuleTab* ruletab, Rule* rule) {
 /// @return le tableau incrémenté
 Rule* ruletabaddrealoc(RuleTab* ruletab, Rule* rule) {
     if (ruletab -> n == ruletab -> n_max) {
-        ruletab -> tab = realloc(ruletab -> tab, ((ruletab -> n_max) * 2) * sizeof(Rule *));
+        ruletab -> tab = safe_realloc(ruletab -> tab, ((ruletab -> n_max) * 2) * sizeof(Rule *));
     }
     return ruletabadd(ruletab, rule);
 }

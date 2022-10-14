@@ -22,9 +22,9 @@
 /// @brief Alloue buffer_size bytes de mémoire
 /// @param buffer_size la quantitée de mémoire à allouer
 /// @return Un pointeur vers cet espace mémoire
-void* safemalloc(int buffer_size) {
+void* safe_malloc(int buffer_size) {
     void* pointer = malloc(buffer_size);
-    if (pointer != NULL) {
+    if (pointer) {
         return pointer;
     } else {
         printf("L'opération malloc a échouée :sob: !");
@@ -36,9 +36,9 @@ void* safemalloc(int buffer_size) {
 /// @param pointer un pointeur vers cet espace mémoire
 /// @param buffer_size la quantitée de mémoire à allouer
 /// @return Un pointeur vers ce nouvel espace mémoire redimensioner
-void* saferealloc(void* pointer, int buffer_size) {
+void* safe_realloc(void* pointer, int buffer_size) {
     pointer = realloc(pointer, buffer_size);
-    if (pointer != NULL) {
+    if (pointer) {
         return pointer;
     } else {
         printf("L'opération realloc a échouée :sob: !");

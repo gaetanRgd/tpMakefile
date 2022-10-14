@@ -21,7 +21,7 @@
 #include <stdio.h>
 
 #include "chainedlist.h"
-
+#include "safemalloc.h"
 
 /// @brief Crée un maillon de la liste encapsulant une chaîne de caractère
 ///        Complexité en O(k)
@@ -29,8 +29,8 @@
 /// @return Le maillon de la liste nouvelement formé
 /// @exception Il faudra free ce maillon avec freelistnode(node)
 List* createlistnode(char* element) {
-    List* node = malloc(sizeof(List));
-    *node = (List) {NULL, malloc(strlen(element) + 1)};
+    List* node = safe_malloc(sizeof(List));
+    *node = (List) {NULL, safe_malloc(strlen(element) + 1)};
     strcpy(node -> element, element);
     return node;
 }
