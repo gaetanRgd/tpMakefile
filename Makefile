@@ -35,6 +35,6 @@ lecture.o: lecture.c lecture.h datastructure/rule_struct.h datastructure/rule_fu
 clean :
 	find . -type f -name '*.o' -exec rm {} +
 	find . -type f -name '*.h.gch' -exec rm {} +
-
+	find . -type f -name 'vgcore.*' -exec rm {} +
 .PHONY: clean
 

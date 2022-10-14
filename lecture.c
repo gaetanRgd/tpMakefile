@@ -114,20 +114,23 @@ void remplacer(char* s1, char c2, char c3, int n) {
  * Renvoie le nombre de regles dans le fichier
  */
 int nbRegles(char* fichier){
-    FILE* f=NULL;
-    size_t MAX_LIGNE=100;
+    FILE* f;
+    size_t MAX_LIGNE=1000;
     f=fopen(fichier,"r");
+    printf("%ld", (long int) f);
     if(f==NULL) {
         exit(1);
     }
     int taille=0;
-    char* ligne_courante;
-    while(!testFinFichier(f)) {
+    char* ligne_courante = NULL;
+    while(!feof(f)) {
         getline(&ligne_courante, &MAX_LIGNE, f);
         if(*(ligne_courante)!='\t' && strlen(ligne_courante)>1) {
             taille++;
         }
     }
+    printf("\n\nEOF\n\n");
+    free(ligne_courante);
     fclose(f);
     return taille;
 }
