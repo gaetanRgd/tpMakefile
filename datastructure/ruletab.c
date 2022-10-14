@@ -71,7 +71,6 @@ Rule* ruletabaddrealoc(RuleTab* ruletab, Rule* rule) {
     return ruletabadd(ruletab, rule);
 }
 
-/* Obtenir une rêgle a partir d'un identifiant */
 /// @brief Obtenir une rêgle a partir d'un identifiant
 /// @param ruletab le tableau stockant les regles
 /// @param id l'identifiant de la rêgle étudiée
