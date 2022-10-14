@@ -22,6 +22,8 @@
 #include "ruleset.h"
 #include "rule_struct.h"
 
+static int SIZE = sizeof(RuleSet) * 8;
+
 /* TODO Changer la constante 64 de cette partie du code (impropre) */
 /* Complexité en O(1) (pour le moment) */ 
 
@@ -30,7 +32,7 @@
 /// @return Un tableau représentant le grand ensemble 
 /// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec infinitesetfree(set)
 InfiniteRuleSet infinitesetcreate(int n_max) {
-    return malloc(n_max / 64 * sizeof(RuleSet)); // TODO set à 0 les entiers pointés
+    return malloc(n_max / SIZE * sizeof(RuleSet)); // TODO set à 0 les entiers pointés
 }
 
 /// @brief Supprime le grand ensemble en libérant l'espace mémoire associé. Complexité en O(1) 
@@ -45,7 +47,7 @@ void infinitesetfree(InfiniteRuleSet set) {
 /// @return le grand ensemble complété
 /// @exception On suppose que l'entier considéré appartient à [[0, n_max]]
 InfiniteRuleSet infinitesetadd(InfiniteRuleSet set, RuleId id) {
-    set[id / 64] = setadd(set[id / 64], id % 64);
+    set[id / SIZE] = setadd(set[id / SIZE], id % SIZE);
     return set;
 }
 
@@ -55,7 +57,7 @@ InfiniteRuleSet infinitesetadd(InfiniteRuleSet set, RuleId id) {
 /// @return le grand ensemble tronqué
 /// @exception On suppose que l'entier considéré appartient à [[0, n_max]]
 InfiniteRuleSet infinitesetdel(InfiniteRuleSet set, RuleId id) {
-    set[id / 64] = setdel(set[id / 64], id % 64);
+    set[id / SIZE] = setdel(set[id / SIZE], id % SIZE);
     return set;
 }
 
@@ -65,5 +67,5 @@ InfiniteRuleSet infinitesetdel(InfiniteRuleSet set, RuleId id) {
 /// @return 1 si l'entier est dans le grand ensemble et 0 sinon
 /// @exception On suppose que l'entier considéré appartient à [[0, n_max]]
 int infinitesetin(InfiniteRuleSet set, RuleId id) {
-    return setin(set[id / 64], id % 64);
+    return setin(set[id / SIZE], id % SIZE);
 }
