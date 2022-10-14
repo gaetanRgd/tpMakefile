@@ -62,7 +62,6 @@ void add_requirement(Rule* rule, char* req) {
     append(&(rule -> requirement), req);
 }
 
-/* y Ajouter des dépendances */
 void add_requirement_by_id(RuleTab* ruletab, RuleId id, char* req) {
     add_requirement(ruletabget(ruletab, id), req);
 }
@@ -99,11 +98,3 @@ void print_rule(Rule* rule) {
     print_list(rule -> commands);
     printf("\n}\n");
 }
-/* y Ajouter des commandes */
-
-
-/* Supprimer une rêgle */
-
-/* Algotithme de Parsing :
- * - Première étape pour attribuer les rêgles, leurs commandes et le nombre de dépendances
- * - Seconde étape pour y ajouter les ids des dépendances */
