@@ -17,6 +17,7 @@
 */
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "rule_struct.h"
 
@@ -24,12 +25,13 @@
 #include "chainedlist.h"
 
 /* STR to ID == Arbre Radix*/
-RuleId* str_to_id(RuleTab* ruletab, char* str) {
-    return 0;
-}
-
 Rule* str_to_Rule(RuleTab* ruletab, char* str) {
-    return ruletabget(ruletab, *str_to_id(ruletab, str));
+    for (RuleId i = 0; i < ruletab -> n_max; i++) {
+        if (strcmp(ruletab -> tab[i] -> name, str)) {
+            return ruletab -> tab[i];
+        }
+    }
+    return NULL;
 }
 
 /* Créer une rêgle */
