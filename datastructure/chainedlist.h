@@ -1,13 +1,21 @@
 #ifndef CHAINEDLIST_FILE
 #define CHAINEDLIST_FILE
 
-/* Liste chainée de chaînes de caractères */
+
+/// @brief Liste encapsulant des chaîne de caractères
+/// @param next le prochain élément dans la liste
+/// @param element la chaîne de caractère encapsulée dans le maillon
+/// @exception Il faudra free ce maillon avec freelistnode(node)
 typedef struct List {
     struct List *next;
     char* element;
 } List;
 
 /* Structure de gestion de la liste chaînée pour l'ajout en fin de liste */
+/// @brief Liste avec ajout à la fin encapsulant des chaînes de caractères.
+/// @param head Le maillon en tête de la liste 
+/// @param tail Le maillon en queue de la liste
+/// @exception Ne pas oublier de free cette liste avec freelinkedlist(listhead)
 typedef struct {
     List* head;
     List* tail;
