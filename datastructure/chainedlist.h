@@ -11,7 +11,6 @@ typedef struct List {
     char* element;
 } List;
 
-/* Structure de gestion de la liste chaînée pour l'ajout en fin de liste */
 /// @brief Liste avec ajout à la fin encapsulant des chaînes de caractères.
 /// @param head Le maillon en tête de la liste 
 /// @param tail Le maillon en queue de la liste
