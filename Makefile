@@ -2,8 +2,11 @@ LDFLAGS = -time -g -lm
 CFLAGS = -Wall -Wextra
 CFLAGS := $(CFLAGS) -Werror -Wno-unused-parameter
 
-mymake: mymake.o cible.o graphe.o lecture.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o
+mymake: mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o
 	gcc $(LDFLAGS) $^ -o $@
+
+datastructure/safemalloc.o: datastructure/safemalloc.c
+	gcc $(CFLAGS) -c $< -o $@
 
 datastructure/chainedlist.o: datastructure/chainedlist.c datastructure/chainedlist.h
 	gcc $(CFLAGS) -c $< -o $@
