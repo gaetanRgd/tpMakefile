@@ -4,6 +4,7 @@
 #include "datastructure/ruleset.h"
 #include "datastructure/rule_function.h"
 #include "datastructure/rule_struct.h"
+#include "datastructure/ruletab.h"
 
 void make_naive(char* nom_cible, RuleTab e);
 void make(char* nom_cible, RuleTab e);

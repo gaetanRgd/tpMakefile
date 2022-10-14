@@ -26,7 +26,7 @@
  * Construit la regle passee en entree en executant les commades necessaires a la creation
  * Ne renvoie rien
  */
-void make_naive(char* nom_cible, Ruleset e){
+void make_naive(char* nom_cible, RuleTab e){
     int id_cible=-1;
     id_cible=parcourir(e, nom_cible);
 
@@ -64,7 +64,7 @@ void make_naive(char* nom_cible, Ruleset e){
  * Construit la regle passee en entree en executant les commades necessaires a la creation si un des prerequis a ete modifie
  * Ne renvoie rien
  */
-void make(char* nom_cible, Ruletab e){
+void make(char* nom_cible, RuleTab e){
     int* id_cible;
     id_cible=strtoid(e, nom_cible);
 
