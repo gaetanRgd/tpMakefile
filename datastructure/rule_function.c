@@ -46,6 +46,8 @@ Rule* create_rule(RuleTab* ruletab, char* name) {
 }
 
 void free_rule(Rule* rule) {
+    freelinkedlist(&(rule -> commands));
+    freelinkedlist(&(rule -> requirement));
     free(rule);
 }
 

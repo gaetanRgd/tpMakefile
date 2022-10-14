@@ -21,6 +21,7 @@
 
 #include "ruletab.h"
 
+#include "rule_function.h"
 #include "rule_struct.h"
 
 /* Créer un tableau des rêgles
@@ -30,9 +31,10 @@ RuleTab ruletabcreate(int n_max) {
     return ruletab;
 }
 
-/* ATTENTION cette fonction ne free pas les regles
- * Il faut les free avant ! */
 void ruletabfree(RuleTab* ruletab) {
+    for (RuleId i = 0; i < ruletab -> n_max; i++) {
+        free_rule(ruletab -> tab[i]);
+    }
     free(ruletab -> tab);
 }
 

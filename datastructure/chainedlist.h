@@ -17,6 +17,8 @@ List* createlistnode(char* element);
 
 void freelistnode(List* node);
 
+void freelinkedlist(ListHead* list);
+
 ListHead createlist(void);
 
 int is_empty(ListHead* list);

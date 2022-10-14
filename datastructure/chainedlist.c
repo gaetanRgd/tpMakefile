@@ -35,6 +35,16 @@ void freelistnode(List* node) {
     free(node);
 }
 
+void freelinkedlist(ListHead* list) {
+    List* node = list -> head;
+    List* next; 
+    while (node != NULL) {
+        next = node -> next;
+        freelistnode(node);
+        node = next;
+    }
+}
+
 ListHead createlist(void) {
     return (ListHead) {NULL, NULL};
 }
