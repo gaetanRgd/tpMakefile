@@ -32,9 +32,9 @@ graphe.o: graphe.c graphe.h datastructure/ruletab.h
 lecture.o: lecture.c lecture.h datastructure/rule_struct.h datastructure/rule_function.h datastructure/ruleset.h datastructure/ruletab.h
 	gcc $(CFLAGS) -c $<
 
-
 clean :
-	rm -f *.o
-	rm -f *.h.gch
+	find . -type f -name '*.o' -exec rm {} +
+	find . -type f -name '*.h.gch' -exec rm {} +
+
 .PHONY: clean
 
