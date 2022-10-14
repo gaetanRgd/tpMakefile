@@ -16,6 +16,7 @@
  *   ////////                                                        |_|   |_|  \___/|_| |_|_|_|\___/     |____|\___/____|____|
 */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -28,8 +29,8 @@
 /// @brief version naive du make qui reconstruit toujours les prerequis
 /// @param prend le nom de la premiere regle a construire et la table des regles du fichier
 /// @return void (execute des commandes)
-void make_naive(char* nom_cible, RuleTab e){
-    Rule* reg_cible = str_to_rule(&e, nom_cible);
+void make_naive(char* nom_cible, RuleTab tab){
+    Rule* reg_cible = str_to_rule(&tab, nom_cible);
 
     printf("Construction de %s\n", nom_cible);
 
@@ -48,13 +49,13 @@ void make_naive(char* nom_cible, RuleTab e){
         }
     }
     else{ // Construire recursivement la cible
-        // Contruction de chacune des premisses
+        // Contruction de chacun des prerequis
         List* p = get_requirement_list(reg_cible);
         while(p != NULL) {
-            printf("premisse : %s\n", p->element);
+            printf("prerequis : %s\n", p->element);
             if(getTime(nom_cible)>getTime(p->element)){
                 printf("%s", p->element);
-                make(p->element, e);
+                make(p->element, tab);
             }
             p=p->next;
         }
@@ -76,8 +77,8 @@ void make_naive(char* nom_cible, RuleTab e){
 /// @brief fonction make construisant récursivement les regles d'un fichier en partant d'une regle specifiee
 /// @param prend le nom de la premiere regle a construire et la table des regles du fichier
 /// @return void (execute des commandes)
-void make(char* nom_cible, RuleTab e){
-    Rule* reg_cible = str_to_rule(&e, nom_cible);
+void make(char* nom_cible, RuleTab tab){
+    Rule* reg_cible = str_to_rule(&tab, nom_cible);
 
     printf("Construction de %s\n", nom_cible);
 
@@ -96,14 +97,14 @@ void make(char* nom_cible, RuleTab e){
         }
     }
     else{ // Construire recursivement la cible
-        // Contruction de chacune des premisses
+        // Contruction de chacun des prerequis
         List* p = get_requirement_list(reg_cible);
         int a_change=0; // 0 si aucun des fichiers n'a change et 1 sinon
         while(p != NULL) {
-            printf("premisse : %s\n", p->element);
+            printf("prerequis : %s\n", p->element);
             if(getTime(nom_cible)>getTime(p->element)){
                 printf("%s", p->element);
-                make(p->element, e);
+                make(p->element, tab);
                 a_change=1;
             }
             p=p->next;
