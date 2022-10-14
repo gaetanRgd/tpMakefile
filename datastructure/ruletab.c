@@ -31,7 +31,7 @@ RuleTab ruletabcreate(int n_max) {
 }
 
 /* ATTENTION cette fonction ne free pas les regles
- * Il faut les free avnat ! */
+ * Il faut les free avant ! */
 void ruletabfree(RuleTab* ruletab) {
     free(ruletab -> tab);
 }
