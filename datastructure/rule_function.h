@@ -6,9 +6,7 @@
 #include "rule_struct.h"
 
 
-RuleId* str_to_id(RuleTab* ruletab, char* str);
-
-Rule* str_to_Rule(RuleTab* ruletab, char* str);
+Rule* str_to_rule(RuleTab* ruletab, char* str);
 
 Rule* create_rule(RuleTab* ruletab, char* name);
 
@@ -31,4 +29,6 @@ void add_command_by_id(RuleTab* ruletab, RuleId id, char* cmd);
 List* get_command_list(Rule* rule);
 
 List* get_command_list_by_id(RuleTab* ruletab, RuleId id);
+
+void print_rule(Rule* rule);
 #endif

@@ -20,48 +20,49 @@
 #include "lecture.h"
 
 
-/* Lit le fichier donne en entree
- * Cree l'ensemble contenant les regles du fichier
- * Renvoie l'ensemble des regles lues dans le fichier(type Ensemble)
- */
+/// @brief fonction qui lit un fichier  afin de construire la liste des regles du fichier
+/// @param prend le nom du fichier
+/// @return la table des regles inscrites dans le fichier$
 RuleTab lecture(char* fichier) {
-    int taille=nbRegles(fichier);
-    printf("%d", taille);
+    int taille=nbRegles(fichier);//nombre de regles dans le fichier
 
     FILE* f=NULL;
     f=fopen(fichier,"r");
     if(f==NULL) {
-        exit(1);
+        f=fopen("makefile","r"); // On gere ici le cas ou le nom du fichier Makefile est ecrit entierement en minuscules seulement si le fichier makefile se situe dans le meme dossier que ce projet
+        if(f==NULL) {
+            exit(1);
+        }
     }
-    char* ligne_courante;
+    char* ligne_courante = NULL; //Stocke la ligne du fichier qu'on est en train de lire
     char* token;
-    size_t MAX_LIGNE=100;
+    size_t MAX_LIGNE=1000; // Taille maximale de la ligne du fichier
 
 
-    RuleTab e=ruletabcreate(taille);
+    RuleTab tab=ruletabcreate(taille);
     Rule* r;
-    char*nom;
+    char* nom;
 
-    while(!testFinFichier(f)) {
+    while(!feof(f)) {//On lit tout le fichier
 
         getline(&ligne_courante, &MAX_LIGNE, f);
-
+        
 
         if(*(ligne_courante)!='\t' && strlen(ligne_courante)>1) { // Si la ligne n'est pas vide et qu'elle n'est pas une commande, c'est un debut de nouvelle regle
 
             printf("********fin de la regle********\n\n");
             printf("********nouvelle regle********\n");
 
-            nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et premisses
-            r=create_rule(&e,nom);
+            nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et prerequis
+            r=create_rule(&tab,nom);
             printf("Nom : %s\n", nom);
 
-            ligne_courante=strtok(NULL, ":");//On regrde ce qu'il y a apres les :
-            token=strtok(ligne_courante, " ");
+            nom = strtok(NULL, ":");//On regrde ce qu'il y a apres les :
+            token = strtok(nom, " ");
 
-            printf("premisses : ");
-            while(token != NULL) { // Parcours de la liste des premisses
-                //retirer le caractere \n de la derniere premisse ( le remplacer par \O)
+            printf("prerequis : ");
+            while(token != NULL) { // Parcours de la liste des prerequis
+                //retirer le caractere \n de la derniere prerequis ( le remplacer par \O)
                 remplacer(token,'\n','\0', strlen(token));
 
                 printf("%s, ", token);
@@ -69,65 +70,56 @@ RuleTab lecture(char* fichier) {
                 token=strtok(NULL, " ");
             }
         }
-        else if(*(ligne_courante)=='\t' ){ // La ligne entiere donne tout de suite la commande (avec le caractere \n pour qu'elles'execure toute seule)
-            add_command(r, ligne_courante+1);//On ne veut pas le caractere \t
-            printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t
+        else if(*(ligne_courante)=='\t' ){ // La ligne entiere donne tout de suite la commande (avec le caractere \n pour qu'elles executent toutes seules)
+            add_command(r, ligne_courante+1);//On ne veut pas le caractere \t donc +1
+            printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t donc +1
         }
+        
 
 
     }
     printf("\n********fin de la regle********\n\n");
+    free(ligne_courante); // On libere la memoire allouee dans le getline
     fclose(f);
-
-    return e;
+    return tab;
 }
 
-/* Teste si la position actuelle dans le fichier correspond a EOF
- * Prend en entree le nom du fichier(type char*) ou on fait le test
- * Renvoie 1 si on est a la fin du fichier et 0 sinon
- */
-int testFinFichier(FILE* f) { // pour savoir si on peut continuer les getline
-    if (fgetc(f)==EOF) {
-        return 1;
-    }
-    else {
-        fseek(f, -1, SEEK_CUR);
-        return 0;
-    }
-}
 
-/* Remplace le caractere c2 par c3 dans la chaine de caracteres s1
- * Prend en entree s1(type char*) c2(type char) et c3(type char)
- */
-void remplacer(char* s1, char c2, char c3, int n) {
+/// @brief remplace un caractere c_av par un caractere c_ap dans le string str
+/// @param str chaine de caracteres a modifier
+/// @param c_av le caractere present avant la modification
+/// @param c_ap le caractere present apres la modification
+/// @param n la taille de la chaine str
+void remplacer(char* str, char c_av, char c_ap, int n) {
     int i=0;
-    while(i<10) {
-        if(*(s1+i) == c2) {
-            *(s1+i)=c3;
+    while(i<n) {
+        if(*(str+i) == c_av) {
+            *(str+i)=c_ap;
         }
         i++;
     }
 }
 
-/*Permet de connaitre le nombre de regles dans le fichier avant de creer toutes les structures
- * Prend en entree le nom du fichier ou sont stockees les regles
- * Renvoie le nombre de regles dans le fichier
- */
+/// @brief fonction qui parcourt un fichier pour connaitre le nombre de regles a l'interieur
+/// @param prend le nom du fichier a etudier
+/// @return le nombre de regles dans le fichier
 int nbRegles(char* fichier){
-    FILE* f=NULL;
-    size_t MAX_LIGNE=100;
+    FILE* f;
+    size_t MAX_LIGNE=1000;
     f=fopen(fichier,"r");
+    printf("%ld", (long int) f);
     if(f==NULL) {
         exit(1);
     }
     int taille=0;
-    char* ligne_courante;
-    while(!testFinFichier(f)) {
+    char* ligne_courante = NULL;
+    while(!feof(f)) {//Parcours de tout le fichier
         getline(&ligne_courante, &MAX_LIGNE, f);
         if(*(ligne_courante)!='\t' && strlen(ligne_courante)>1) {
             taille++;
         }
     }
+    free(ligne_courante);// On libere la memoire allouee dans le getline
     fclose(f);
     return taille;
 }

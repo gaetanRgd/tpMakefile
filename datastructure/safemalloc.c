@@ -17,14 +17,31 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 
-typedef int Bool;
+/// @brief Alloue buffer_size bytes de mémoire
+/// @param buffer_size la quantitée de mémoire à allouer
+/// @return Un pointeur vers cet espace mémoire
+void* safe_malloc(int buffer_size) {
+    void* pointer = malloc(buffer_size);
+    if (pointer) {
+        return pointer;
+    } else {
+        perror("Le malloc a échoué :/");
+        exit(1);
+    }
+}
 
-/* Complexité en espace en O(n)
- * n étant le nombre de chaînes recconues par l'arbre radix */
-typedef struct {
-    Radix** tab;
-    Bool* id;
-    char* endkey;
-} Radix;
-
+/// @brief Change la taille d'un espace mémoire réservé
+/// @param pointer un pointeur vers cet espace mémoire
+/// @param buffer_size la quantitée de mémoire à allouer
+/// @return Un pointeur vers ce nouvel espace mémoire redimensioner
+void* safe_realloc(void* pointer, int buffer_size) {
+    pointer = realloc(pointer, buffer_size);
+    if (pointer) {
+        return pointer;
+    } else {
+        perror("L'opération realloc a échouée :/");
+        exit(1);
+    }
+}
