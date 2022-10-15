@@ -55,10 +55,9 @@ Rule* ruletabadd(RuleTab* ruletab, Rule* rule) {
         rule -> id = ruletab -> n; // Pour que la rêgle conaisse son ID
         ruletab -> n++;
         return rule;
-    } else {
-        perror("Un élément n'a pas pu être ajouté au tableau car ce dernier est plein :/ !");
-        return NULL;
     }
+    perror("Un élément n'a pas pu être ajouté au tableau car ce dernier est plein :/ !");
+    return NULL;
 }
 
 /// @brief Ajoute une rêgle au tableau sans se soucier de la taille
