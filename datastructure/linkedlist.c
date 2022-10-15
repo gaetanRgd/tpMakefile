@@ -46,7 +46,6 @@ void free_linkedlist(LinkedListHead* listhead) {
     }
 }
 
-
 /// @brief Crée une liste chaînée permettant l'ajout en fin de chaîne
 ///        Complexité en O(1)
 /// @return La liste chaînée vide
