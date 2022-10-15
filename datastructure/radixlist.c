@@ -19,21 +19,16 @@
 #include <stdlib.h>
 
 #include "rule_struct.h"
+#include "linkedlist.h"
 #include "safemalloc.h"
 
 /* Complexité en espace en O(n)
  * n étant le nombre de chaînes recconues par l'arbre radix */
 typedef struct {
-    void* list;
+    LinkedListHead list;
+    char* name;
     Rule* rule;
 } Radix;
-
-/* Complexité en espace en O(1)
- * Car maximum 255 éléments dans la liste, un par caractères */
-typedef struct RadixChainedList {
-    struct RadixChainedList* next;
-    Radix* tree;
-} RadixChainedList;
 
 typedef struct {
     int size_a;
@@ -53,7 +48,7 @@ StrCompared compare(char* char_a, char* char_b) {
 
 /* Crée une node radix
  * Complexité en O(1) */
-Radix* alloc_radix_node(RadixChainedList* list, Rule* rule) {
+Radix* alloc_radix_node(LinkedListHead* list, Rule* rule) {
     Radix* radix = safe_malloc(size_of(Radix));
     radix -> list = list;
     radix -> rule = rule;
