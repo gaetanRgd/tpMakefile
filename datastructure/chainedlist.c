@@ -37,7 +37,7 @@ List* createlistnode(char* element) {
 
 
 /// @brief Libère l'espace mémoire occupée par le maillon 
-///        Complexité en O(1)
+///        Complexité en O(k)
 /// @param node le maillon
 void freelistnode(List* node) {
     free(node -> element);

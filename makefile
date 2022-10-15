@@ -6,6 +6,9 @@ mymake: mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastruc
 	gcc $(LDFLAGS) $^ -o $@
 
 datastructure/linkedlist.o: datastructure/linkedlist.c datastructure/linkedlist.h datastructure/safemalloc.h
+  gcc $(CFLAGS) -c $< -o $@
+
+datastructure/radixlist.o: datastructure/radixlist.c datastructure/safemalloc.h datastructure/rule_struct.h
 	gcc $(CFLAGS) -c $< -o $@
 
 datastructure/safemalloc.o: datastructure/safemalloc.c
