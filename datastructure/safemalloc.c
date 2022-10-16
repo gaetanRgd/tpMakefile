@@ -27,7 +27,7 @@ void* safe_malloc(int buffer_size) {
     if (pointer) {
         return pointer;
     } else {
-        perror("Le malloc a échoué :/");
+        perror("Le malloc a échoué :/\n");
         exit(1);
     }
 }
@@ -41,7 +41,7 @@ void* safe_realloc(void* pointer, int buffer_size) {
     if (pointer) {
         return pointer;
     } else {
-        perror("L'opération realloc a échouée :/");
+        perror("L'opération realloc a échouée :/\n");
         exit(1);
     }
 }
