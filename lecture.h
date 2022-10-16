@@ -1,5 +1,5 @@
-#ifndef LECTURE_FILE
-#define LECTURE_FILE
+#ifndef LECT_FILE
+#define LECT_FILE
 
 
 #include <stdio.h>
