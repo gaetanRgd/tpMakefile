@@ -28,6 +28,7 @@
 /// @param element l'élément à encapsuler de taille k
 /// @return Le maillon de la liste nouvelement formé
 /// @exception Il faudra free ce maillon avec freelistnode(node)
+/// @deprecated MERCI d'utiliser les linkedlist qui généralisent cette structure
 List* createlistnode(char* element) {
     List* node = safe_malloc(sizeof(List));
     *node = (List) {NULL, safe_malloc(strlen(element) + 1)};
@@ -39,6 +40,7 @@ List* createlistnode(char* element) {
 /// @brief Libère l'espace mémoire occupée par le maillon 
 ///        Complexité en O(k)
 /// @param node le maillon
+/// @deprecated MERCI d'utiliser les linkedlist qui généralisent cette structure
 void freelistnode(List* node) {
     free(node -> element);
     free(node);
@@ -48,6 +50,7 @@ void freelistnode(List* node) {
 /// @brief Libère l'espace occupé par la liste chaînée
 ///        Complexité linéaire en la taille de la liste
 /// @param listhead la tête de la liste
+/// @deprecated MERCI d'utiliser les linkedlist qui généralisent cette structure
 void freelinkedlist(ListHead* listhead) {
     List* node = listhead -> head;
     List* next; 
@@ -63,6 +66,7 @@ void freelinkedlist(ListHead* listhead) {
 ///        Complexité en O(1)
 /// @return La liste chaînée vide
 /// @exception Ne pas oublier de free cette liste avec freelinkedlist(listhead)
+/// @deprecated MERCI d'utiliser les linkedlist qui généralisent cette structure
 ListHead createlist(void) {
     return (ListHead) {NULL, NULL};
 }
@@ -72,6 +76,7 @@ ListHead createlist(void) {
 ///        Complexité en O(1)
 /// @param listhead La liste étudiée
 /// @return Un entier valant vrai si la liste est vide et 0 sinon
+/// @deprecated MERCI d'utiliser les linkedlist qui généralisent cette structure
 int is_empty(ListHead* listhead) {
     return listhead -> head == NULL; 
 }
@@ -80,6 +85,7 @@ int is_empty(ListHead* listhead) {
 ///        Complexité en O(1)
 /// @param listhead la tête de la liste
 /// @param element l'élément à ajouter
+/// @deprecated MERCI d'utiliser les linkedlist qui généralisent cette structure
 void append(ListHead* listhead, char* element) {
     List* node = createlistnode(element);
     if (is_empty(listhead)) {
@@ -96,6 +102,7 @@ void append(ListHead* listhead, char* element) {
 ///        Complexité en O(1)
 /// @param listhead la tête de la liste
 /// @return L'élément retiré de la liste
+/// @deprecated MERCI d'utiliser les linkedlist qui généralisent cette structure
 char* pop(ListHead* listhead) {
     List* node = listhead -> head;
     listhead -> head = node -> next;
@@ -108,6 +115,7 @@ char* pop(ListHead* listhead) {
 /// @brief Affiche la liste
 ///        Complexité linéaire en la taille de la liste
 /// @param listhead la tête de la liste
+/// @deprecated MERCI d'utiliser les linkedlist qui généralisent cette structure
 void print_list(ListHead listhead) {
     List* node = listhead.head;
     printf("[");
