@@ -1,4 +1,4 @@
-mymake: mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/buffer.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o
+mymake: mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/tab.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o
 	gcc -time -g -lm mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/tab.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o -o mymake_bymymake
 
 datastructure/tab.o: datastructure/tab.c datastructure/tab.h
