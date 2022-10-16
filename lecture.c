@@ -20,10 +20,72 @@
 #include "lecture.h"
 
 
+
+/// @brief fonction qui permet de remplacere les variables de type $ dans le Makefile sans modifier la variable d'entree
+/// @param prend une liste de caracteres a modifier, les prerequis et le nom du fichier cible
+/// @return la liste de caractere ou les $ ont ete remplace par les variables
+char* parcourir(char* commande, char* pre, char* nom){
+    //printf("\ncommandes : %s\nliste_pre : %s de tazille : %ld\nnom cible : %s",commande, nom);
+
+    char* premier_pre=strtok(pre, " ");// Premier prerequis
+    char* newCommand=malloc((strlen(commande) + strlen(pre) + strlen(nom))*sizeof(char));
+    char c_courant=*commande;//Caractere qui parcourt la commande a la recherche des $
+    int indiceC=0;//Indice de parcours de la commande pour c_courant
+    int decalageNewC=0;//decalage de l'indice pour ecrire dans newCommand a chaque fois qu'il y a un $
+    //printf("\nFonction parcourir :\n");
+    while(c_courant != '\0'){
+        if(c_courant=='$'){
+            switch(*(commande+indiceC+1)){ // On regarde par quoi on va devoir remplacer
+                case '@':
+                    for(int i=0;i<(int)strlen(nom);i++){
+                        *(newCommand+decalageNewC+indiceC+i)=*(nom+i);
+      //                  printf("%c", *(nom+i));
+                    }
+                    decalageNewC+=(int)strlen(nom);
+                    break;
+                case '<':
+                    for(int i=0;i<(int)strlen(premier_pre);i++){
+                        *(newCommand+decalageNewC+indiceC+i)=*(premier_pre+i);
+        //                printf("%c", *(premier_pre+i));
+                    }
+                    decalageNewC+=((int)strlen(premier_pre));
+                    break;
+                case '^':
+                    for(int i=0;i<(int)strlen(pre);i++){
+                        *(newCommand+decalageNewC+indiceC+i)=*(pre+i);
+          //              printf("%c", *(pre+i));
+                    }
+                    decalageNewC+=(int)strlen(pre);
+                    break;
+                default:
+                    exit(1);
+                    break;
+
+            }
+            indiceC++;//On ne regarde pas le caratere apres le $
+            //printf("*");
+            decalageNewC-=2;
+        }
+        else{
+            *(newCommand+decalageNewC+indiceC)=c_courant;
+            //printf("%c", c_courant);
+        }
+        indiceC++;
+        c_courant=*(commande+indiceC);
+    }
+    *(newCommand+decalageNewC+indiceC)='\0';
+
+    //printf("Fin fonction parcourir");
+    return newCommand;
+}
+
+
+
 /// @brief fonction qui lit un fichier  afin de construire la liste des regles du fichier
 /// @param prend le nom du fichier
 /// @return la table des regles inscrites dans le fichier$
 RuleTab lecture(char* fichier) {
+
     int taille=nbRegles(fichier);//nombre de regles dans le fichier
 
     FILE* f=NULL;
@@ -36,12 +98,18 @@ RuleTab lecture(char* fichier) {
     }
     char* ligne_courante = NULL; //Stocke la ligne du fichier qu'on est en train de lire
     char* token;
-    size_t MAX_LIGNE=1000; // Taille maximale de la ligne du fichier
+    size_t MAX_LIGNE=1000; // Taille maximale de la ligne du fichier -> a faire : connaitre la taille max d'une ligne grace au premier parcours
+
+    //Variables utilisees pour l'extension remplacer les $
+    char* commande_modif;
+    char* liste_prerequis=NULL;
+    char* copynomBoucle=NULL;
 
 
     RuleTab tab=ruletabcreate(taille);
     Rule* r;
     char* nom;
+
 
     while(!feof(f)) {//On lit tout le fichier
 
@@ -50,14 +118,22 @@ RuleTab lecture(char* fichier) {
 
         if(*(ligne_courante)!='\t' && strlen(ligne_courante)>1) { // Si la ligne n'est pas vide et qu'elle n'est pas une commande, c'est un debut de nouvelle regle
 
-            printf("********fin de la regle********\n\n");
+            //printf("\n********fin de la regle********\n\n");
             printf("********nouvelle regle********\n");
+
+            if(liste_prerequis != NULL){
+                free(liste_prerequis);
+                liste_prerequis=NULL;
+            }
 
             nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et prerequis
             r=create_rule(&tab,nom);
             printf("Nom : %s\n", nom);
 
             nom = strtok(NULL, ":");//On regrde ce qu'il y a apres les :
+            liste_prerequis=malloc(strlen(nom)*sizeof(char)+1);// +1 pour le '\0'
+            strcpy(liste_prerequis,nom);//On garde en memoire la liste des prerequis  pour eventuelement changer les commandes
+            remplacer(liste_prerequis,'\n','\0', strlen(liste_prerequis));
             token = strtok(nom, " ");
 
             printf("prerequis : ");
@@ -71,13 +147,13 @@ RuleTab lecture(char* fichier) {
             }
         }
         else if(*(ligne_courante)=='\t' ){ // La ligne entiere donne tout de suite la commande (avec le caractere \n pour qu'elles executent toutes seules)
+            commande_modif=parcourir(ligne_courante+1,liste_prerequis, copynomBoucle);
             add_command(r, ligne_courante+1);//On ne veut pas le caractere \t donc +1
-            printf("\ncommande : %s", ligne_courante+1); //On ne veut pas le caractere \t donc +1
+            printf("\ncommande : %s", commande_modif); //On ne veut pas le caractere \t donc +1
+            free(commande_modif);
         }
-        
-
-
     }
+
     printf("\n********fin de la regle********\n\n");
     free(ligne_courante); // On libere la memoire allouee dans le getline
     fclose(f);

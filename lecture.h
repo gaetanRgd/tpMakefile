@@ -18,5 +18,7 @@ int testFinFichier(FILE* f);
 void remplacer(char* s1, char c2, char c3, int n);
 int nbRegles(char* fichier);
 
+char* parcourir(char* commande, char* pre, char* nom);
+
 
 #endif
