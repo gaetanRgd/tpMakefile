@@ -2,10 +2,10 @@ LDFLAGS = -time -g -lm
 CFLAGS = -Wall -Wextra
 CFLAGS := $(CFLAGS) -Werror -Wno-unused-parameter
 
-mymake: mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/buffer.o datastructure/linkedlist.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o
+mymake: mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/tab.o datastructure/linkedlist.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o
 	gcc $(LDFLAGS) $^ -o $@
 
-datastructure/buffer.o: datastructure/buffer.c datastructure/buffer.h
+datastructure/tab.o: datastructure/tab.c datastructure/tab.h
 	gcc $(CFLAGS) -c $< -o $@
 
 datastructure/linkedlist.o: datastructure/linkedlist.c datastructure/linkedlist.h datastructure/safemalloc.h
@@ -26,7 +26,7 @@ datastructure/ruleset.o: datastructure/ruleset.c datastructure/ruleset.h datastr
 datastructure/infiniteruleset.o: datastructure/infiniteruleset.c datastructure/infiniteruleset.h datastructure/safemalloc.h datastructure/ruleset.h datastructure/rule_struct.h
 	gcc $(CFLAGS) -c $< -o $@
 
-datastructure/ruletab.o: datastructure/ruletab.c datastructure/ruletab.h datastructure/rule_struct.h datastructure/safemalloc.h datastructure/buffer.h
+datastructure/ruletab.o: datastructure/ruletab.c datastructure/ruletab.h datastructure/rule_struct.h datastructure/safemalloc.h datastructure/tab.h
 	gcc $(CFLAGS) -c $< -o $@
 
 datastructure/rule_function.o: datastructure/rule_function.c datastructure/rule_struct.h datastructure/safemalloc.h datastructure/ruletab.h datastructure/chainedlist.h

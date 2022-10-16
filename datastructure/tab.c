@@ -19,60 +19,58 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "ruletab.h"
-
-#include "safemalloc.h"
 #include "tab.h"
-#include "rule_function.h"
-#include "rule_struct.h"
+#include "safemalloc.h"
 
-/// @brief Créer un tableau de regle vide
-/// @param n_max La taille maximale du tableau
-/// @return Le tableau nouvelement crée
-/// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec ruletabfree(ruletab)
-RuleTab ruletabcreate(int n_max) {
-    return tab_create(n_max);
+/// @brief Créer un tableau de pointeurs vide
+/// @param nmax La taille maximale du tableau
+/// @return Le tableau nouvellement crée
+/// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec tab_free(tab)
+Tab tab_create(int nmax) {
+    return (Tab) {safe_malloc(nmax * sizeof(void*)), nmax, 0};
 }
-
 
 /// @brief libere l'espace réservé pour le tableau
-/// @param ruletab le tableau a supprimer
-void ruletabfree(RuleTab* ruletab) {
-    for (RuleId id = 0; id < ruletab -> n; id++) {
-        free_rule(tab_get(ruletab, id));
-    }
-    tab_free(ruletab);
+/// @param tab le tableau à désallouer
+void tab_free(Tab* tab) {
+    free(tab -> mem);
 }
 
-/// @brief Ajoute un pointeur vers une rêgle au tableau
-/// @param ruletab le tableau
-/// @param rule la rêgle a ajouter
+/// @brief Ajoute un élément au tableau
+/// @param tab le tableau
+/// @param ptr le pointeur à ajouter
 /// @return le tableau incrémenté
-/// @exception ATTENTION si le tableau est plein, l'élémént ne sera pas ajouté
-Rule* ruletabadd(RuleTab* ruletab, Rule* rule) {
-    Rule** is_inserted = tab_add(ruletab, rule);
-    if (is_inserted != NULL) {
-        rule -> id = ruletab -> n; // Pour que la rêgle conaisse son ID
-        return rule;
+/// @exception ATTENTION si le tableau est plein, le pointeur ne sera pas ajouté
+void* tab_add(Tab* tab, void* ptr) {
+    if (tab -> n < tab -> nmax) {
+        tab -> mem[tab -> n] = ptr;
+        tab -> n++;
+        return tab -> mem[tab -> n - 1];
     }
+    perror("Un élément n'a pas pu être ajouté au tableau car ce dernier est plein :/ !\n");
     return NULL;
 }
 
-
-/// @brief Ajoute une rêgle au tableau sans se soucier de la taille
-/// @param ruletab le tableau
-/// @param rule la rêgle a ajouter
+/// @brief Ajoute un pointeur au tableau quitte à realloc
+/// @param tab le tableau
+/// @param ptr le pointeur à ajouter
 /// @return le tableau incrémenté
-Rule* ruletabaddrealoc(RuleTab* ruletab, Rule* rule) {
-    tab_add_realoc(ruletab, rule);
-    rule -> id = ruletab -> n; // Pour que la rêgle conaisse son ID
-    return rule;
+void* tab_add_realoc(Tab* tab, void* ptr) {
+    if (tab -> n >= tab -> nmax) {
+        tab -> mem = safe_realloc(tab -> mem, (tab -> nmax) * 2);
+        tab -> nmax = (tab -> nmax) * 2;
+    }
+    return tab_add(tab, ptr);
 }
 
-/// @brief Obtenir une rêgle a partir d'un identifiant
-/// @param ruletab le tableau stockant les regles
-/// @param id l'identifiant de la rêgle étudiée
-/// @return Un pointeur vers la rêgle en question
-Rule* ruletabget(RuleTab* ruletab, RuleId id) {
-    return tab_get(ruletab, id);
+/// @brief Récupère le pointeur a partir de son numéro dans le tableau
+/// @param tab le tableau
+/// @param ptr le pointeur à ajouter
+/// @return le tableau incrémenté
+void* tab_get(Tab* tab, int id) {
+    if (id <= tab -> n) {
+        return tab -> mem[id];
+    }
+    perror("Le tableau ne contient pas autant de pointeurs :/\n");
+    return NULL;
 }

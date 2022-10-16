@@ -1,8 +1,8 @@
 mymake: mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/buffer.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o
-	gcc -time -g -lm mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/buffer.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o -o mymake_bymymake
+	gcc -time -g -lm mymake.o cible.o graphe.o lecture.o datastructure/safemalloc.o datastructure/tab.o datastructure/chainedlist.o datastructure/ruleset.o datastructure/infiniteruleset.o datastructure/ruletab.o datastructure/rule_function.o -o mymake_bymymake
 
-datastructure/buffer.o: datastructure/buffer.c datastructure/buffer.h
-	gcc -Wall -Wextra -Werror -Wno-unused-parameter -c datastructure/buffer.c -o datastructure/buffer.o
+datastructure/tab.o: datastructure/tab.c datastructure/tab.h
+	gcc -Wall -Wextra -Werror -Wno-unused-parameter -c datastructure/tab.c -o datastructure/tab.o
 
 datastructure/safemalloc.o: datastructure/safemalloc.c
 	gcc -Wall -Wextra -Werror -Wno-unused-parameter -c datastructure/safemalloc.c -o datastructure/safemalloc.o
@@ -16,7 +16,7 @@ datastructure/ruleset.o: datastructure/ruleset.c datastructure/ruleset.h datastr
 datastructure/infiniteruleset.o: datastructure/infiniteruleset.c datastructure/infiniteruleset.h datastructure/safemalloc.h datastructure/ruleset.h datastructure/rule_struct.h
 	gcc -Wall -Wextra -Werror -Wno-unused-parameter -c datastructure/infiniteruleset.c -o datastructure/infiniteruleset.o
 
-datastructure/ruletab.o: datastructure/ruletab.c datastructure/ruletab.h datastructure/rule_struct.h datastructure/safemalloc. datastructure/buffer.h
+datastructure/ruletab.o: datastructure/ruletab.c datastructure/ruletab.h datastructure/rule_struct.h datastructure/safemalloc. datastructure/tab.h
 	gcc -Wall -Wextra -Werror -Wno-unused-parameter -c datastructure/ruletab.c -o datastructure/ruletab.o
 
 datastructure/rule_function.o: datastructure/rule_function.c datastructure/rule_struct.h datastructure/safemalloc.h datastructure/ruletab.h datastructure/chainedlist.h
