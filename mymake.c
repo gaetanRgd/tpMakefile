@@ -29,7 +29,7 @@
 /// @param prend potentiellement en argument le nom de la premiere regle a construire
 int main(int argc, char **argv){
     printf("Lecture du fichier en cours ... :/\n");
-    RuleTab tab = lecture("makefile"); //Creation du tableau des regles
+    RuleTab tab = lecture("Makefile"); //Creation du tableau des regles
     printf("\nFin de la lecture du fichier\n");
 
     printf("Execution des commandes :\n");
