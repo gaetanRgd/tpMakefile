@@ -26,7 +26,7 @@ datastructure/ruleset.o: datastructure/ruleset.c datastructure/ruleset.h datastr
 datastructure/infiniteruleset.o: datastructure/infiniteruleset.c datastructure/infiniteruleset.h datastructure/safemalloc.h datastructure/ruleset.h datastructure/rule_struct.h
 	gcc $(CFLAGS) -c $< -o $@
 
-datastructure/ruletab.o: datastructure/ruletab.c datastructure/ruletab.h datastructure/rule_struct.h datastructure/safemalloc.h
+datastructure/ruletab.o: datastructure/ruletab.c datastructure/ruletab.h datastructure/rule_struct.h datastructure/safemalloc.h datastructure/buffer.h
 	gcc $(CFLAGS) -c $< -o $@
 
 datastructure/rule_function.o: datastructure/rule_function.c datastructure/rule_struct.h datastructure/safemalloc.h datastructure/ruletab.h datastructure/chainedlist.h
