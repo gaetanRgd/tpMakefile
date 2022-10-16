@@ -6,5 +6,6 @@
 /.vscode
 # Ignore exec
 mymake
+mymake_bymymake
 # Ignore valgrind file
 vgcore*
