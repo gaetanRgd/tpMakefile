@@ -26,7 +26,7 @@
 /// @param nmax La taille maximale du tableau
 /// @return Le tableau nouvellement crée
 /// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec tab_free(tab)
-Tab tab_create(int nmax) {
+Tab* tab_create(int nmax) {
     Tab* tab = safe_malloc(sizeof(Tab));
     *tab = (Tab) {safe_malloc(nmax * sizeof(void*)), nmax, 0};
     return tab;

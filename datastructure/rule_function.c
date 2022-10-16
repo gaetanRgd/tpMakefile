@@ -21,22 +21,45 @@
 #include <stdio.h>
 
 #include "rule_struct.h"
+#include "rule_function.h"
 
+#include "radix.h"
 #include "safemalloc.h"
 #include "ruletab.h"
 #include "chainedlist.h"
+
+RuleManager* rulemanager_create(int nmax) {
+    RuleManager* rulemanager = safe_malloc(sizeof(RuleManager));
+    rulemanager -> ruletab = tab_create(nmax);
+    rulemanager -> radix = create_radix();
+    return rulemanager;
+}
+
+void rulemanager_free(RuleManager* rulemanager) {
+    tab_free(rulemanager -> ruletab);
+    free_radix_node(rulemanager -> radix);
+    free(rulemanager);
+}
+
 
 /// @brief Renvoie une regle a partir de son nom
 /// @param ruletab le talbeau des rêgles
 /// @param name le nom de la regle
 /// @return Un pointeur vers la regle associée
-Rule* str_to_rule(RuleTab* ruletab, char* name) {
-    for (RuleId id = 0; id < ruletab -> n; id++) {
-        printf("{%s == %s}\n", ruletabget(ruletab, id) -> name, name);
-        if (!strcmp(ruletabget(ruletab, id) -> name, name)) {
-            return ruletabget(ruletab, id);
+Rule* str_to_rule(RuleManager* rulemanager, char* name) {
+    Radix* radix = radixget(rulemanager -> radix, name, strlen(name));
+    if (radix != NULL) {
+        printf("Match avec la methode 1 : rule=%p, match=%s\n", radix -> rule, radix -> match);
+    } else {
+        printf("Pas de match avec la métohde 1\n");
+    }
+    for (RuleId id = 0; id < rulemanager -> ruletab -> n; id++) {
+        if (!strcmp(ruletabget(rulemanager -> ruletab, id) -> name, name)) {
+            printf("Match avec la métohde 2 %s\n", ruletabget(rulemanager -> ruletab, id) -> name);
+            return ruletabget(rulemanager -> ruletab, id);
         }
     }
+    printf("Pas de match avec la méthode 2.\n");
     return NULL;
 }
 
@@ -45,9 +68,10 @@ Rule* str_to_rule(RuleTab* ruletab, char* name) {
 /// @param name le nom de la regle
 /// @return Un pointeur vers la regle
 /// @exception ATTENTION ne pas oublier de libérer l'espace mémoire avec free_rule(rule)
-Rule* create_rule(RuleTab* ruletab, char* name) {
+Rule* create_rule(RuleManager* rulemanager, char* name) {
     Rule* rule = safe_malloc(sizeof(Rule));
-    ruletabadd(ruletab, rule);
+    ruletabadd(rulemanager -> ruletab, rule);
+    radixadd(rulemanager -> radix, name, name, rule, strlen(name));
     rule -> name = safe_malloc(strlen(name) + 1);
     strcpy(rule -> name, name);
     rule -> commands = createlist();

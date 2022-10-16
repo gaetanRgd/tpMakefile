@@ -30,7 +30,7 @@
 /// @param n_max La taille maximale du tableau
 /// @return Le tableau nouvelement crée
 /// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec ruletabfree(ruletab)
-RuleTab ruletabcreate(int n_max) {
+RuleTab* ruletabcreate(int n_max) {
     return tab_create(n_max);
 }
 

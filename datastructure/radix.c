@@ -26,6 +26,12 @@
 #include "linkedlist.h"
 #include "safemalloc.h"
 
+int str_len(char* str) {
+    if ((str == NULL) || (*str == '\0')) {
+        return 0;
+    }
+    return strlen(str);
+}
 
 
 /* Crée une node radix
@@ -33,12 +39,16 @@
 Radix* alloc_radix_node(LinkedListHead listhead, char* name, char* match, Rule* rule) {
     Radix* node = safe_malloc(sizeof(Radix));
     node -> listhead = listhead;
-    node -> name = safe_malloc(strlen(name) + 1);
+    node -> name = safe_malloc(str_len(name) + 1);
     node -> name = name;
-    node -> match = safe_malloc(strlen(match) + 1);
+    node -> match = safe_malloc(str_len(match) + 1);
     node -> match = match;
     node -> rule = rule;
     return node; 
+}
+
+Radix* create_radix(void) {
+    return alloc_radix_node(create_linkedlist(), '\0', '\0', NULL);
 }
 
 void free_radix_node(Radix* node) {
@@ -59,22 +69,18 @@ typedef struct {
 } StrCompared;
 
 StrCompared compare(char* radixchar, char* keychar, int key_length) {
-    StrCompared comp = {0, safe_malloc(key_length + 1), safe_malloc(key_length + 1), safe_malloc(key_length + 1)};
-    while ((*radixchar == *keychar) && (*radixchar != '\0')) {
+    StrCompared comp = {0, radixchar, keychar, safe_malloc(key_length + 1)};
+    while ((*comp.radix_char_left == *comp.key_char_left) && (*comp.radix_char_left != '\0')) {
         comp.samechar[comp.size_same] = keychar[comp.size_same];
         comp.size_same++;
-        radixchar++;
-        keychar++;
+        comp.radix_char_left++;
+        comp.key_char_left++;
     }
     comp.samechar[comp.size_same] = '\0';
-    comp.radix_char_left = radixchar;
-    comp.key_char_left = keychar;
     return comp;
 }
 
 void free_strcompared(StrCompared comp) {
-    free(comp.radix_char_left);
-    free(comp.key_char_left);
     free(comp.samechar);
 }
 
@@ -93,6 +99,7 @@ Radix* radixget(Radix* radix, char* key, int key_length) {
         } else if (comp.size_same > 0) {
             return NULL;
         }
+        free_strcompared(comp);
     }
     return NULL;
 }
@@ -121,7 +128,7 @@ void radixadd(Radix* radix, char* key, char* match, Rule* rule, int key_length) 
             safe_realloc(((Radix*) (list -> element)) -> name, comp.size_same + 1);
             ((Radix*) (list -> element)) -> name[comp.size_same + 1] = '\0';
             append_linkedlist(&linkedlisthead, list -> element);
-            list -> element = alloc_radix_node(linkedlisthead, comp.samechar, NULL, NULL);
+            list -> element = alloc_radix_node(linkedlisthead, comp.samechar, '\0', NULL);
         }
         free_strcompared(comp);
     }

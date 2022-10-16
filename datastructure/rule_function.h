@@ -4,11 +4,20 @@
 #include "ruletab.h"
 #include "chainedlist.h"
 #include "rule_struct.h"
+#include "radix.h"
 
+typedef struct {
+    RuleTab* ruletab;
+    Radix* radix;
+} RuleManager;
 
-Rule* str_to_rule(RuleTab* ruletab, char* str);
+RuleManager* rulemanager_create(int nmax);
 
-Rule* create_rule(RuleTab* ruletab, char* name);
+void rulemanager_free(RuleManager* rulemanager);
+
+Rule* str_to_rule(RuleManager* rulemanager, char* str);
+
+Rule* create_rule(RuleManager* rulemanager, char* name);
 
 void free_rule(Rule* rule);
 

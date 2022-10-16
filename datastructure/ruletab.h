@@ -8,7 +8,7 @@
 /// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec ruletabfree(ruletab)
 typedef Tab RuleTab;
 
-RuleTab ruletabcreate(int n_max);
+RuleTab* ruletabcreate(int n_max);
 
 void ruletabfree(RuleTab* ruletab);
 

@@ -24,13 +24,14 @@
 #include<string.h>
 
 #include "cible.h"
-
+#include "datastructure/rule_struct.h"
+#include "datastructure/rule_function.h"
 
 /// @brief version naive du make qui reconstruit toujours les prerequis
 /// @param prend le nom de la premiere regle a construire et la table des regles du fichier
 /// @return void (execute des commandes)
-void make_naive(char* nom_cible, RuleTab tab){
-    Rule* reg_cible = str_to_rule(&tab, nom_cible);
+void make_naive(char* nom_cible, RuleManager* rulemanager){
+    Rule* reg_cible = str_to_rule(rulemanager, nom_cible);
 
     printf("Construction de %s\n", nom_cible);
 
@@ -56,7 +57,7 @@ void make_naive(char* nom_cible, RuleTab tab){
             if (1) {
             //if(getTime(nom_cible)>getTime(p->element)){
                 printf("%s", p->element);
-                make(p->element, tab);
+                make_naive(p->element, rulemanager);
             }
             p=p->next;
         }
@@ -78,8 +79,8 @@ void make_naive(char* nom_cible, RuleTab tab){
 /// @brief fonction make construisant récursivement les regles d'un fichier en partant d'une regle specifiee
 /// @param prend le nom de la premiere regle a construire et la table des regles du fichier
 /// @return void (execute des commandes)
-void make(char* nom_cible, RuleTab tab){
-    Rule* reg_cible = str_to_rule(&tab, nom_cible);
+void make(char* nom_cible, RuleManager* rulemanager){
+    Rule* reg_cible = str_to_rule(rulemanager, nom_cible);
     printf("Construction de %s\n", nom_cible);
 
     if (reg_cible==NULL){
@@ -107,7 +108,7 @@ void make(char* nom_cible, RuleTab tab){
             if (1) {
             //if(getTime(nom_cible)>getTime(p->element)){
                 printf("%s", p->element);
-                make(p->element, tab);
+                make(p->element, rulemanager);
                 a_change=1;
             }
             p=p->next;

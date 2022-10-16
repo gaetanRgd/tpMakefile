@@ -13,7 +13,7 @@ typedef struct {
     int n;
 } Tab;
 
-Tab tab_create(int nmax);
+Tab* tab_create(int nmax);
 
 void tab_free(Tab* tab);
 

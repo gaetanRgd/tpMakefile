@@ -20,8 +20,7 @@
 #include <stdio.h>
 
 #include "lecture.h"
-#include "datastructure/ruleset.h"
-#include "datastructure/ruletab.h"
+#include "datastructure/rule_function.h"
 #include "graphe.h"
 #include "cible.h"
 
@@ -29,17 +28,17 @@
 /// @param prend potentiellement en argument le nom de la premiere regle a construire
 int main(int argc, char **argv){
     printf("Lecture du fichier en cours ... :/\n");
-    RuleTab tab = lecture("Makefile"); //Creation du tableau des regles
+    RuleManager* rulemanager = lecture("Makefile"); //Creation du tableau des regles
     printf("\nFin de la lecture du fichier\n");
 
     printf("Execution des commandes :\n");
     if(argv[1]==NULL){
-        make("mymake",tab);
+        make("mymake", rulemanager);
     }
     else {
-        make(argv[1],tab);
+        make(argv[1], rulemanager);
     }
 
-    ruletabfree(&tab); //Liberation de la memoire
+    rulemanager_free(rulemanager); //Liberation de la memoire
     return 0;
 }

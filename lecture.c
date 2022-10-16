@@ -18,12 +18,12 @@
 
 
 #include "lecture.h"
-
+#include "datastructure/rule_function.h"
 
 /// @brief fonction qui lit un fichier  afin de construire la liste des regles du fichier
 /// @param prend le nom du fichier
 /// @return la table des regles inscrites dans le fichier$
-RuleTab lecture(char* fichier) {
+RuleManager* lecture(char* fichier) {
     int taille=nbRegles(fichier);//nombre de regles dans le fichier
 
     FILE* f=NULL;
@@ -39,7 +39,7 @@ RuleTab lecture(char* fichier) {
     size_t MAX_LIGNE=1000; // Taille maximale de la ligne du fichier
 
 
-    RuleTab tab=ruletabcreate(taille);
+    RuleManager* rulemanager=rulemanager_create(taille);
     Rule* r;
     char* nom;
 
@@ -54,7 +54,7 @@ RuleTab lecture(char* fichier) {
             printf("********nouvelle regle********\n");
 
             nom=strtok(ligne_courante,":"); // Separer la chaine entre cible et prerequis
-            r=create_rule(&tab,nom);
+            r=create_rule(rulemanager, nom);
             printf("Nom : %s\n", nom);
 
             nom = strtok(NULL, ":");//On regrde ce qu'il y a apres les :
@@ -81,7 +81,7 @@ RuleTab lecture(char* fichier) {
     printf("\n********fin de la regle********\n\n");
     free(ligne_courante); // On libere la memoire allouee dans le getline
     fclose(f);
-    return tab;
+    return rulemanager;
 }
 
 

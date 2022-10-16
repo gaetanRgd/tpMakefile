@@ -13,6 +13,8 @@ typedef struct {
     Rule* rule;
 } Radix;
 
+Radix* create_radix(void);
+
 void free_radix_node(Radix* node);
 
 Radix* radixget(Radix* radix, char* key, int key_length);

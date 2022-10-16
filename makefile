@@ -32,13 +32,13 @@ datastructure/infiniteruleset.o: datastructure/infiniteruleset.c datastructure/i
 datastructure/ruletab.o: datastructure/ruletab.c datastructure/ruletab.h datastructure/rule_struct.h datastructure/safemalloc.h datastructure/tab.h
 	gcc $(CFLAGS) -c $< -o $@
 
-datastructure/rule_function.o: datastructure/rule_function.c datastructure/rule_struct.h datastructure/safemalloc.h datastructure/ruletab.h datastructure/chainedlist.h
+datastructure/rule_function.o: datastructure/rule_function.c datastructure/rule_function.h datastructure/radix.h datastructure/rule_struct.h datastructure/safemalloc.h datastructure/ruletab.h datastructure/chainedlist.h
 	gcc $(CFLAGS) -c $< -o $@
 
-mymake.o: mymake.c lecture.h datastructure/ruleset.h datastructure/ruletab.h graphe.h cible.h
+mymake.o: mymake.c lecture.h datastructure/rule_function.h graphe.h cible.h
 	gcc $(CFLAGS) -c $< -o $@
 
-cible.o: cible.c cible.h datastructure/rule_struct.h datastructure/rule_function.h datastructure/ruleset.h datastructure/ruletab.h
+cible.o: cible.c cible.h datastructure/rule_struct.h datastructure/rule_function.h
 	gcc $(CFLAGS) -c $<
 
 graphe.o: graphe.c graphe.h datastructure/ruletab.h
