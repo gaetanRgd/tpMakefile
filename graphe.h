@@ -1,5 +1,5 @@
-#ifndef LECTURE_FILE
-#define LECTURE_FILE
+#ifndef GRAPHE_FILE
+#define GRAPHE_FILE
 #include <stdio.h>
 #include <stdlib.h>
 
