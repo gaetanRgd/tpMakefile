@@ -27,13 +27,16 @@
 /// @return Le tableau nouvellement crée
 /// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec tab_free(tab)
 Tab tab_create(int nmax) {
-    return (Tab) {safe_malloc(nmax * sizeof(void*)), nmax, 0};
+    Tab* tab = safe_malloc(sizeof(Tab));
+    *tab = (Tab) {safe_malloc(nmax * sizeof(void*)), nmax, 0};
+    return tab;
 }
 
 /// @brief libere l'espace réservé pour le tableau
 /// @param tab le tableau à désallouer
 void tab_free(Tab* tab) {
     free(tab -> mem);
+    free(tab);
 }
 
 /// @brief Ajoute un élément au tableau
