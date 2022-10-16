@@ -97,7 +97,7 @@ void make(char* nom_cible, RuleTab tab){
         }
     }
     else{
-        print_rule(reg_cible);
+        //print_rule(reg_cible);
         // Construire recursivement la cible
         // Contruction de chacun des prerequis
         List* p = get_requirement_list(reg_cible);

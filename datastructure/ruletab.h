@@ -2,17 +2,11 @@
 #define RULETAB_FILE
 
 #include "rule_struct.h"
+#include "tab.h"
 
-/// @brief Cette structure représente un tableau de rêgles
-/// @param tab est le tableau de pointeurs vers les regles
-/// @param n vaut le nombre de regles dans le tableau
-/// @param n_max est la taille maximale de tab
+/// @brief Cette structure représente un tableau de pointeurs vers des rêgles
 /// @exception ATTENTION Ne pas oublier de libérer l'espace mémoire avec ruletabfree(ruletab)
-typedef struct {
-    Rule** tab;
-    int n;
-    int n_max;
-} RuleTab;
+typedef Tab RuleTab;
 
 RuleTab ruletabcreate(int n_max);
 
